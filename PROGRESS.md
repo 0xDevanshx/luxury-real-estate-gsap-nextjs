@@ -22,7 +22,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Press/media grid: stagger reveal + hover overlay + ExternalLink icon — Implemented responsive 3-column grid with smooth hover overlay and GSAP stagger. Build clean.
 - [x] Social-proof marquee: infinite CSS scroll, dual direction, pause on hover — Implemented seamless CSS marquee with group-hover pause state. Build clean.
 - [x] Digital magazine showcase: stacked covers + float animation + lightbox — Implemented overlapping 3D stack with custom float keyframes and interactive CSS lightbox. Build clean.
-- [ ] App showcase: CSS 3D phone tilt + real App Store / Google Play badges
+- [x] App showcase: CSS 3D phone tilt + real App Store / Google Play badges — Implemented perspective-based 3D hover tracking and SVG application badges. Build clean.
 - [ ] Philanthropy section: background video + lightbox + SplitType reveal
 - [ ] Newsletter signup: React Hook Form + Zod + inline validation + success state
 - [ ] Office locations: parallax background photo cards + contact links
