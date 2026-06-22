@@ -13,7 +13,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Hero: 3D video panel (React Three Fiber VideoTexture + cursor tilt) — Verified visually, tilt interaction works and typography renders flawlessly on top
 - [x] Featured listings: horizontal scroll-jacked carousel (pinned, scrub) — Completed with GSAP pin, Unsplash images added to next.config.ts, build clean
 - [x] Press strip + CSS 3D video thumbnail + lightbox player — Implemented CSS 3D mouse tilt and GSAP lightbox. Build clean.
-- [ ] Founder spotlight: pinned section + portrait parallax + SplitType line bio
+- [x] Founder spotlight: pinned section + portrait parallax + SplitType line bio — Implemented with GSAP pin, portrait scale/pan, and staggered line text mask-reveal. Build clean.
 - [ ] Stats: scroll-scrubbed counters (SplitType chars, reverse on scroll-up)
 - [ ] Company overview: SVG DrawSVG separator + scroll-progress color shift
 - [ ] CTA tile band: grid tiles + magnetic primary CTA

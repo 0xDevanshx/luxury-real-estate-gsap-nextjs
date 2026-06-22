@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import FeaturedListings from "@/components/sections/FeaturedListings";
 import PressVideoSection from "@/components/sections/PressVideoSection";
+import FounderSpotlight from "@/components/sections/FounderSpotlight";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <FeaturedListings />
       <PressVideoSection />
+      <FounderSpotlight />
     </main>
   );
 }
