@@ -1,13 +1,17 @@
 "use client";
 
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import * as THREE from "three";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { ContactShadows, useTexture } from "@react-three/drei";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import { ContactShadows } from "@react-three/drei";
 
 function CurvedImage({ imageUrl }: { imageUrl: string }) {
   const meshRef = useRef<THREE.Mesh>(null);
-  const texture = useTexture(imageUrl);
+  
+  // Use core useLoader to safely configure CORS
+  const texture = useLoader(THREE.TextureLoader, imageUrl, (loader) => {
+    loader.setCrossOrigin("anonymous");
+  });
   
   // Create a subtle curve: Radius=10, Height=4.5, Width~=8 (16:9 ratio)
   // thetaLength = 0.8 radians
@@ -51,10 +55,12 @@ export default function Hero3DPanel({ videoUrl }: { videoUrl: string }) {
   return (
     <div className="absolute inset-0 w-full h-full z-0 opacity-40 pointer-events-auto mix-blend-screen">
       <Canvas camera={{ position: [0, 0, 7.5], fov: 45 }}>
-        {/* We rotate the whole group so the cylinder segment faces the camera */}
-        <group rotation={[0, Math.PI / 2, 0]}>
-          <CurvedImage imageUrl={videoUrl} />
-        </group>
+        <Suspense fallback={null}>
+          {/* We rotate the whole group so the cylinder segment faces the camera */}
+          <group rotation={[0, Math.PI / 2, 0]}>
+            <CurvedImage imageUrl={videoUrl} />
+          </group>
+        </Suspense>
       </Canvas>
     </div>
   );
