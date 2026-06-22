@@ -86,12 +86,18 @@ export default function FounderSpotlight() {
   const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const mm = gsap.matchMedia();
+    const mm = gsap.matchMedia(containerRef);
 
-    mm.add("(min-width: 768px)", () => {
-      // Desktop: Pin container, slow pan/scale portrait
-      const ctx = gsap.context(() => {
-        
+    mm.add({
+      isDesktop: "(min-width: 768px)",
+      isMobile: "(max-width: 767px)",
+      reduceMotion: "(prefers-reduced-motion: reduce)"
+    }, (context) => {
+      const { isDesktop, reduceMotion } = context.conditions as { isDesktop: boolean, isMobile: boolean, reduceMotion: boolean };
+      
+      if (reduceMotion) return;
+
+      if (isDesktop) {
         ScrollTrigger.create({
           trigger: containerRef.current,
           start: "top top",
@@ -111,13 +117,7 @@ export default function FounderSpotlight() {
             scrub: true,
           }
         });
-      }, containerRef);
-      return () => ctx.revert();
-    });
-
-    mm.add("(max-width: 767px)", () => {
-      // Mobile: subtle scale without pin
-      const ctx = gsap.context(() => {
+      } else {
         gsap.to(imageRef.current, {
           scale: 1.05,
           ease: "none",
@@ -128,8 +128,7 @@ export default function FounderSpotlight() {
             scrub: true,
           }
         });
-      }, containerRef);
-      return () => ctx.revert();
+      }
     });
 
     return () => mm.revert();

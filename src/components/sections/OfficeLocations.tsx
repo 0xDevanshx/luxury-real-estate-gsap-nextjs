@@ -41,7 +41,8 @@ export default function OfficeLocations() {
 
     const cards = containerRef.current.querySelectorAll(".office-card");
 
-    const ctx = gsap.context(() => {
+    const ctx = gsap.matchMedia(containerRef);
+    ctx.add("(prefers-reduced-motion: no-preference)", () => {
       cards.forEach((card) => {
         const bg = card.querySelector(".parallax-bg");
         
@@ -58,7 +59,7 @@ export default function OfficeLocations() {
           });
         }
       });
-    }, containerRef);
+    });
 
     return () => ctx.revert();
   }, []);

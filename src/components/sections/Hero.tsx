@@ -24,9 +24,9 @@ const KineticHeadline = memo(() => {
     
     const split = new SplitType(headlineRef.current, { types: 'words' });
     
-    gsap.set(split.words, { opacity: 0, y: 60 });
-
-    const ctx = gsap.context(() => {
+    const ctx = gsap.matchMedia(headlineRef);
+    ctx.add("(prefers-reduced-motion: no-preference)", () => {
+      gsap.set(split.words, { opacity: 0, y: 60 });
       // Word stagger reveal on load
       gsap.to(split.words, {
         opacity: 1,
@@ -52,7 +52,7 @@ const KineticHeadline = memo(() => {
           scrub: 1.5,
         }
       });
-    }, headlineRef);
+    });
 
     return () => {
       split.revert();

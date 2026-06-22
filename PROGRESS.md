@@ -27,7 +27,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Newsletter signup: React Hook Form + Zod + inline validation + success state — Implemented robust async subscription flow with zod type checking and CheckCircle animation. Build clean.
 - [x] Office locations: parallax background photo cards + contact links — Implemented full-width GSAP scrub-driven photo parallax stack with responsive flex layout and Lucide integrations. Build clean.
 - [x] Footer: sitemap columns + social SVG icons + Lenis scrollTo top — Implemented dark theme sitemap matrix, custom SVG social paths, and smooth `useLenis().scrollTo(0)` back-to-top handler. Build clean.
-- [ ] Prefers-reduced-motion audit pass
+- [x] Prefers-reduced-motion audit pass — Globally replaced `gsap.context` with `gsap.matchMedia` across 10 distinct interactive components, scoping heavy animations and transforms strictly to `(prefers-reduced-motion: no-preference)`. Refactored `BackToTop` to performant CSS transitions. Build clean.
 - [ ] Mobile responsive pass (ScrollTrigger.matchMedia, touch carousel fallback)
 - [ ] Keyboard + focus audit (modals, carousels, drag slider)
 - [ ] Lighthouse audit gate: CLS < 0.1, LCP < 2.5 s, Accessibility ≥ 90

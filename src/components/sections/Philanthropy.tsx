@@ -16,7 +16,8 @@ export default function Philanthropy() {
 
     const splitText = new SplitType(textRef.current, { types: "lines" });
 
-    const ctx = gsap.context(() => {
+    const ctx = gsap.matchMedia(containerRef);
+    ctx.add("(prefers-reduced-motion: no-preference)", () => {
       // Wrap lines for clipping
       splitText.lines?.forEach((line) => {
         const wrapper = document.createElement("div");
@@ -36,7 +37,7 @@ export default function Philanthropy() {
         stagger: 0.1,
         ease: "power4.out"
       });
-    }, containerRef);
+    });
 
     return () => {
       splitText.revert();

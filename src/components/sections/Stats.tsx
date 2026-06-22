@@ -42,7 +42,8 @@ const StatItem = memo(({ item }: { item: typeof STATS_DATA[0] }) => {
     const chars = splitLabel.chars;
 
     // Prepare GSAP context to ensure proper cleanup
-    const ctx = gsap.context(() => {
+    const ctx = gsap.matchMedia(containerRef);
+    ctx.add("(prefers-reduced-motion: no-preference)", () => {
       // 1. Text Character Reveal Animation (Scrubbed)
       if (chars) {
         gsap.fromTo(chars, 
@@ -81,7 +82,7 @@ const StatItem = memo(({ item }: { item: typeof STATS_DATA[0] }) => {
           }
         }
       });
-    }, containerRef);
+    });
 
     return () => {
       splitLabel.revert();

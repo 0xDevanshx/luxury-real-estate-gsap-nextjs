@@ -23,26 +23,7 @@ export default function BackToTop() {
     return () => ctx.revert();
   }, []);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (isVisible) {
-        gsap.fromTo(
-          buttonRef.current,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
-        );
-      } else {
-        gsap.to(buttonRef.current, {
-          opacity: 0,
-          y: 20,
-          duration: 0.3,
-          ease: "power2.in",
-        });
-      }
-    });
 
-    return () => ctx.revert();
-  }, [isVisible]);
 
   const handleClick = () => {
     const w = window as unknown as {
@@ -57,15 +38,17 @@ export default function BackToTop() {
 
   return (
     <div
-      className={`fixed bottom-8 right-8 z-50 transition-opacity duration-300 ${
-        isVisible ? "pointer-events-auto" : "pointer-events-none"
+      className={`fixed bottom-8 right-8 z-50 transition-opacity duration-500 ${
+        isVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       }`}
     >
       <MagneticButton>
         <button
           ref={buttonRef}
           onClick={handleClick}
-          className="p-3 rounded-full bg-white text-black will-change-transform opacity-0 translate-y-5"
+          className={`p-3 rounded-full bg-white text-black transition-transform duration-500 will-change-transform ${
+            isVisible ? "translate-y-0" : "translate-y-5"
+          }`}
           aria-label="Back to top"
           data-cursor="pointer"
         >

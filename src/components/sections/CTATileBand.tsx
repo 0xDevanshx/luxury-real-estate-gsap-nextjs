@@ -25,7 +25,8 @@ export default function CTATileBand() {
 
     const tiles = sectionRef.current.querySelectorAll(".cta-tile");
 
-    const ctx = gsap.context(() => {
+    const ctx = gsap.matchMedia(sectionRef);
+    ctx.add("(prefers-reduced-motion: no-preference)", () => {
       // Set initial state
       gsap.set(tiles, { 
         opacity: 0, 
@@ -45,7 +46,7 @@ export default function CTATileBand() {
           start: "top 75%",
         }
       });
-    }, sectionRef);
+    });
 
     return () => ctx.revert();
   }, []);

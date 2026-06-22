@@ -52,7 +52,8 @@ export default function PressMediaGrid() {
 
     const items = sectionRef.current.querySelectorAll(".press-item");
 
-    const ctx = gsap.context(() => {
+    const ctx = gsap.matchMedia(containerRef);
+    ctx.add("(prefers-reduced-motion: no-preference)", () => {
       // Set initial states
       gsap.set(items, { opacity: 0, y: 50 });
 
@@ -68,7 +69,7 @@ export default function PressMediaGrid() {
           start: "top 80%",
         }
       });
-    }, sectionRef);
+    });
 
     return () => ctx.revert();
   }, []);

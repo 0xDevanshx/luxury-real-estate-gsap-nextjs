@@ -11,7 +11,8 @@ export default function CompanyOverview() {
   useEffect(() => {
     if (!sectionRef.current || !svgLineRef.current) return;
 
-    const ctx = gsap.context(() => {
+    const ctx = gsap.matchMedia(sectionRef);
+    ctx.add("(prefers-reduced-motion: no-preference)", () => {
       // 1. Background Color Tween
       gsap.fromTo(sectionRef.current, 
         { backgroundColor: "#0a0a0a" },
@@ -42,8 +43,7 @@ export default function CompanyOverview() {
           }
         }
       );
-
-    }, sectionRef);
+    });
 
     return () => ctx.revert();
   }, []);

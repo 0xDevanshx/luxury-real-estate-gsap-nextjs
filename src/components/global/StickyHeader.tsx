@@ -10,7 +10,8 @@ export default function StickyHeader() {
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
+    const ctx = gsap.matchMedia(headerRef);
+    ctx.add("(prefers-reduced-motion: no-preference)", () => {
       gsap.to(headerRef.current, {
         backgroundColor: "rgba(0, 0, 0, 0.85)", // solid background fade
         backdropFilter: "blur(12px)", // blur

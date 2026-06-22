@@ -66,7 +66,8 @@ export default function FeaturedListings() {
   useEffect(() => {
     if (!sectionRef.current || !scrollContainerRef.current) return;
 
-    const ctx = gsap.context(() => {
+    const ctx = gsap.matchMedia(sectionRef);
+    ctx.add("(prefers-reduced-motion: no-preference)", () => {
       const container = scrollContainerRef.current;
       if (!container) return;
 
@@ -93,7 +94,7 @@ export default function FeaturedListings() {
       return () => {
         tween.kill();
       };
-    }, sectionRef);
+    });
 
     return () => ctx.revert();
   }, []);
