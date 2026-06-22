@@ -20,11 +20,11 @@ export default function SmoothScrollProvider({
 
     // Initialize Lenis
     const lenis = new Lenis({
-      // If user prefers reduced motion, disable smoothing (or you can pass duration: 0 / smoothWheel: false)
-      // Setting lerp to 1 disables the smooth easing, making it instant
       lerp: prefersReducedMotion ? 1 : 0.1,
       smoothWheel: !prefersReducedMotion,
     });
+
+    Object.assign(window, { lenis });
 
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -44,6 +44,7 @@ export default function SmoothScrollProvider({
     });
 
     return () => {
+      Object.assign(window, { lenis: undefined });
       lenis.destroy();
       gsap.ticker.remove((time) => lenis.raf(time * 1000));
       mm.revert();
