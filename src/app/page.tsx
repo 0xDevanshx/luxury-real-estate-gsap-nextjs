@@ -14,6 +14,7 @@ import AppShowcase from "@/components/sections/AppShowcase";
 import Philanthropy from "@/components/sections/Philanthropy";
 import NewsletterSignup from "@/components/sections/NewsletterSignup";
 import OfficeLocations from "@/components/sections/OfficeLocations";
+import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
@@ -34,6 +35,7 @@ export default function Home() {
       <Philanthropy />
       <NewsletterSignup />
       <OfficeLocations />
+      <Footer />
     </main>
   );
 }
