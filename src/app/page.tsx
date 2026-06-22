@@ -13,6 +13,7 @@ import MagazineShowcase from "@/components/sections/MagazineShowcase";
 import AppShowcase from "@/components/sections/AppShowcase";
 import Philanthropy from "@/components/sections/Philanthropy";
 import NewsletterSignup from "@/components/sections/NewsletterSignup";
+import OfficeLocations from "@/components/sections/OfficeLocations";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
       <AppShowcase />
       <Philanthropy />
       <NewsletterSignup />
+      <OfficeLocations />
     </main>
   );
 }
