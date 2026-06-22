@@ -46,7 +46,7 @@ const KineticHeadline = memo(() => {
         "--fs-max": 48,
         ease: "none",
         scrollTrigger: {
-          trigger: headlineRef.current.parentElement,
+          trigger: headlineRef.current!.parentElement,
           start: "top top",
           end: "bottom top",
           scrub: 1.5,

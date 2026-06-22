@@ -30,7 +30,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-black text-white cursor-none">
+      <body className="min-h-full flex flex-col bg-black text-white">
         <SmoothScrollProvider>
           <GlobalInteractiveLayer />
           <StickyHeader />
