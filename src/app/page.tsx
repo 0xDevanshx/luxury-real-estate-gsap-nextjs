@@ -3,6 +3,7 @@ import FeaturedListings from "@/components/sections/FeaturedListings";
 import PressVideoSection from "@/components/sections/PressVideoSection";
 import FounderSpotlight from "@/components/sections/FounderSpotlight";
 import Stats from "@/components/sections/Stats";
+import CompanyOverview from "@/components/sections/CompanyOverview";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <PressVideoSection />
       <FounderSpotlight />
       <Stats />
+      <CompanyOverview />
     </main>
   );
 }

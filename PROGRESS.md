@@ -15,7 +15,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Press strip + CSS 3D video thumbnail + lightbox player — Implemented CSS 3D mouse tilt and GSAP lightbox. Build clean.
 - [x] Founder spotlight: pinned section + portrait parallax + SplitType line bio — Implemented with GSAP pin, portrait scale/pan, and staggered line text mask-reveal. Build clean.
 - [x] Stats: scroll-scrubbed counters (SplitType chars, reverse on scroll-up) — Verified GSAP scrub and staggered SplitType character reveal perfectly reverses mid-scroll
-- [ ] Company overview: SVG DrawSVG separator + scroll-progress color shift
+- [x] Company overview: SVG DrawSVG separator + scroll-progress color shift — Verified background tween and vanilla SVG stroke-dashoffset scrub drawing. Build clean.
 - [ ] CTA tile band: grid tiles + magnetic primary CTA
 - [ ] Before/after drag-to-compare slider (clip-path, keyboard accessible)
 - [ ] Testimonials: Swiper autoplay + pause on hover + Quote icon
