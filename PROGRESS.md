@@ -16,7 +16,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Founder spotlight: pinned section + portrait parallax + SplitType line bio — Implemented with GSAP pin, portrait scale/pan, and staggered line text mask-reveal. Build clean.
 - [x] Stats: scroll-scrubbed counters (SplitType chars, reverse on scroll-up) — Verified GSAP scrub and staggered SplitType character reveal perfectly reverses mid-scroll
 - [x] Company overview: SVG DrawSVG separator + scroll-progress color shift — Verified background tween and vanilla SVG stroke-dashoffset scrub drawing. Build clean.
-- [ ] CTA tile band: grid tiles + magnetic primary CTA
+- [x] CTA tile band: grid tiles + magnetic primary CTA — Verified 4x2 CSS grid staggered 3D flip animation and magnetic CTA interaction. Build clean.
 - [ ] Before/after drag-to-compare slider (clip-path, keyboard accessible)
 - [ ] Testimonials: Swiper autoplay + pause on hover + Quote icon
 - [ ] Press/media grid: stagger reveal + hover overlay + ExternalLink icon

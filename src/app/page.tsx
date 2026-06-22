@@ -4,6 +4,7 @@ import PressVideoSection from "@/components/sections/PressVideoSection";
 import FounderSpotlight from "@/components/sections/FounderSpotlight";
 import Stats from "@/components/sections/Stats";
 import CompanyOverview from "@/components/sections/CompanyOverview";
+import CTATileBand from "@/components/sections/CTATileBand";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <FounderSpotlight />
       <Stats />
       <CompanyOverview />
+      <CTATileBand />
     </main>
   );
 }
