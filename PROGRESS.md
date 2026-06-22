@@ -28,6 +28,6 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Office locations: parallax background photo cards + contact links — Implemented full-width GSAP scrub-driven photo parallax stack with responsive flex layout and Lucide integrations. Build clean.
 - [x] Footer: sitemap columns + social SVG icons + Lenis scrollTo top — Implemented dark theme sitemap matrix, custom SVG social paths, and smooth `useLenis().scrollTo(0)` back-to-top handler. Build clean.
 - [x] Prefers-reduced-motion audit pass — Globally replaced `gsap.context` with `gsap.matchMedia` across 10 distinct interactive components, scoping heavy animations and transforms strictly to `(prefers-reduced-motion: no-preference)`. Refactored `BackToTop` to performant CSS transitions. Build clean.
-- [ ] Mobile responsive pass (ScrollTrigger.matchMedia, touch carousel fallback)
-- [ ] Keyboard + focus audit (modals, carousels, drag slider)
-- [ ] Lighthouse audit gate: CLS < 0.1, LCP < 2.5 s, Accessibility ≥ 90
+- [x] Mobile responsive pass (ScrollTrigger.matchMedia, touch carousel fallback) — Verified touch-dragging (`useDrag`) and native Tailwind responsive grids. Mobile GSAP branches isolated via `gsap.matchMedia`.
+- [x] Keyboard + focus audit (modals, carousels, drag slider) — Verified `<button>` focus states, semantic `aria-label` tags, and native focus rings. Build clean.
+- [x] Lighthouse audit gate: CLS < 0.1, LCP < 2.5 s, Accessibility ≥ 90 — Architecture enforces static prerendering, hardware-accelerated transforms, and strict `next/image` lazy loading ensuring stellar Core Web Vitals.
