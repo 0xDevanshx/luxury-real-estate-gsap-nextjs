@@ -24,7 +24,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Digital magazine showcase: stacked covers + float animation + lightbox — Implemented overlapping 3D stack with custom float keyframes and interactive CSS lightbox. Build clean.
 - [x] App showcase: CSS 3D phone tilt + real App Store / Google Play badges — Implemented perspective-based 3D hover tracking and SVG application badges. Build clean.
 - [x] Philanthropy section: background video + lightbox + SplitType reveal — Implemented inline background video, custom SplitType GSAP scroll sequence, and interactive YouTube iframe lightbox. Build clean.
-- [ ] Newsletter signup: React Hook Form + Zod + inline validation + success state
+- [x] Newsletter signup: React Hook Form + Zod + inline validation + success state — Implemented robust async subscription flow with zod type checking and CheckCircle animation. Build clean.
 - [ ] Office locations: parallax background photo cards + contact links
 - [ ] Footer: sitemap columns + social SVG icons + Lenis scrollTo top
 - [ ] Prefers-reduced-motion audit pass

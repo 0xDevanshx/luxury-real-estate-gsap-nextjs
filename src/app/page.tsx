@@ -12,6 +12,7 @@ import SocialMarquee from "@/components/sections/SocialMarquee";
 import MagazineShowcase from "@/components/sections/MagazineShowcase";
 import AppShowcase from "@/components/sections/AppShowcase";
 import Philanthropy from "@/components/sections/Philanthropy";
+import NewsletterSignup from "@/components/sections/NewsletterSignup";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
       <MagazineShowcase />
       <AppShowcase />
       <Philanthropy />
+      <NewsletterSignup />
     </main>
   );
 }
