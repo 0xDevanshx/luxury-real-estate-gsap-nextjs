@@ -18,7 +18,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Company overview: SVG DrawSVG separator + scroll-progress color shift — Verified background tween and vanilla SVG stroke-dashoffset scrub drawing. Build clean.
 - [x] CTA tile band: grid tiles + magnetic primary CTA — Verified 4x2 CSS grid staggered 3D flip animation and magnetic CTA interaction. Build clean.
 - [x] Before/after drag-to-compare slider (clip-path, keyboard accessible) — Implemented draggable slider with custom keyboard accessibility hooks. Build clean.
-- [ ] Testimonials: Swiper autoplay + pause on hover + Quote icon
+- [x] Testimonials: Swiper autoplay + pause on hover + Quote icon — Implemented minimalist carousel with crossFade and pauseOnMouseEnter. Build clean.
 - [ ] Press/media grid: stagger reveal + hover overlay + ExternalLink icon
 - [ ] Social-proof marquee: infinite CSS scroll, dual direction, pause on hover
 - [ ] Digital magazine showcase: stacked covers + float animation + lightbox

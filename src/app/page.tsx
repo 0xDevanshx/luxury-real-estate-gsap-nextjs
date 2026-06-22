@@ -6,6 +6,7 @@ import Stats from "@/components/sections/Stats";
 import CompanyOverview from "@/components/sections/CompanyOverview";
 import CTATileBand from "@/components/sections/CTATileBand";
 import BeforeAfterSlider from "@/components/sections/BeforeAfterSlider";
+import Testimonials from "@/components/sections/Testimonials";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <CompanyOverview />
       <CTATileBand />
       <BeforeAfterSlider />
+      <Testimonials />
     </main>
   );
 }
