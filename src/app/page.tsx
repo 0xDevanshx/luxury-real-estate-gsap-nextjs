@@ -5,6 +5,7 @@ import FounderSpotlight from "@/components/sections/FounderSpotlight";
 import Stats from "@/components/sections/Stats";
 import CompanyOverview from "@/components/sections/CompanyOverview";
 import CTATileBand from "@/components/sections/CTATileBand";
+import BeforeAfterSlider from "@/components/sections/BeforeAfterSlider";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Stats />
       <CompanyOverview />
       <CTATileBand />
+      <BeforeAfterSlider />
     </main>
   );
 }

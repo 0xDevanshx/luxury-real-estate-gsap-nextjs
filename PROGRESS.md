@@ -17,7 +17,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Stats: scroll-scrubbed counters (SplitType chars, reverse on scroll-up) — Verified GSAP scrub and staggered SplitType character reveal perfectly reverses mid-scroll
 - [x] Company overview: SVG DrawSVG separator + scroll-progress color shift — Verified background tween and vanilla SVG stroke-dashoffset scrub drawing. Build clean.
 - [x] CTA tile band: grid tiles + magnetic primary CTA — Verified 4x2 CSS grid staggered 3D flip animation and magnetic CTA interaction. Build clean.
-- [ ] Before/after drag-to-compare slider (clip-path, keyboard accessible)
+- [x] Before/after drag-to-compare slider (clip-path, keyboard accessible) — Implemented draggable slider with custom keyboard accessibility hooks. Build clean.
 - [ ] Testimonials: Swiper autoplay + pause on hover + Quote icon
 - [ ] Press/media grid: stagger reveal + hover overlay + ExternalLink icon
 - [ ] Social-proof marquee: infinite CSS scroll, dual direction, pause on hover
