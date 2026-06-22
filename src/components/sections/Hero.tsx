@@ -6,6 +6,7 @@ import SplitType from "split-type";
 import { Circle, CircleDot, Play, Pause, ChevronDown, Compass, MapPin, Key, Shield } from "lucide-react";
 import MagneticButton from "../global/MagneticButton";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { FEATURED_LISTINGS } from "@/data/mockData";
 
 const HERO_BACKGROUNDS = FEATURED_LISTINGS.map(l => l.image);
@@ -118,17 +119,24 @@ export default function Hero() {
     >
       <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center px-6 lg:px-12 overflow-hidden">
         
-        {/* Background Videos */}
+        {/* Background Images with Ken Burns Effect */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40">
           {HERO_BACKGROUNDS.map((bg, idx) => (
-            <img
+            <div 
               key={idx}
-              src={bg}
-              alt={`Luxury Property ${idx + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 will-change-transform ${
-                idx === activeIndex ? "opacity-60" : "opacity-0"
+              className={`absolute inset-0 w-full h-full transition-opacity duration-1000 will-change-transform ${
+                idx === activeIndex ? "opacity-60 z-10" : "opacity-0 z-0"
               }`}
-            />
+            >
+              <Image
+                src={bg}
+                alt={`Luxury Property ${idx + 1}`}
+                fill
+                priority={idx === 0}
+                sizes="100vw"
+                className={`object-cover will-change-transform ${idx === activeIndex ? "animate-[kenBurns_20s_ease-out_forwards]" : ""}`}
+              />
+            </div>
           ))}
         </div>
 

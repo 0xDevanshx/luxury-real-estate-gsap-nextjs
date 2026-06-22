@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, memo } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import SplitType from "split-type";
 
 const STATS_DATA = [

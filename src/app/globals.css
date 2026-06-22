@@ -66,3 +66,8 @@ body {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-100%); }
 }
+
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
