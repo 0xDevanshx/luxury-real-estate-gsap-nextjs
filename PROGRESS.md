@@ -10,7 +10,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Global interactive layer: custom cursor, scroll progress bar, floating back-to-top, magnetic button system — implemented and verified with browser subagent, build clean
 - [x] Sticky header (transparent → blurred solid) — implemented with GSAP scroll scrub tween, verified via browser subagent, build clean
 - [x] Hero: video crossfade slideshow + kinetic typography + SplitType headline — Verified responsive kinetic font scale, crossfades, and staggered text reveal via Browser Subagent
-- [ ] Hero: 3D video panel (React Three Fiber VideoTexture + cursor tilt)
+- [x] Hero: 3D video panel (React Three Fiber VideoTexture + cursor tilt) — Verified visually, tilt interaction works and typography renders flawlessly on top
 - [ ] Featured listings: horizontal scroll-jacked carousel (pinned, scrub)
 - [ ] Press strip + CSS 3D video thumbnail + lightbox player
 - [ ] Founder spotlight: pinned section + portrait parallax + SplitType line bio

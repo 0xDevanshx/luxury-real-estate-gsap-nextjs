@@ -2,10 +2,12 @@
 
 import { useEffect, useRef, useState, memo } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import { Circle, CircleDot, Play, Pause, ChevronDown, Compass, MapPin, Key, Shield } from "lucide-react";
 import MagneticButton from "../global/MagneticButton";
+import dynamic from "next/dynamic";
+
+const Hero3DPanel = dynamic(() => import("./Hero3DPanel"), { ssr: false });
 
 const VIDEOS = [
   "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
@@ -14,11 +16,11 @@ const VIDEOS = [
 ];
 
 // Extracted KineticHeadline to prevent React re-renders from destroying SplitType DOM nodes
-const KineticHeadline = memo(({ containerRef }: { containerRef: React.RefObject<HTMLElement | null> }) => {
+const KineticHeadline = memo(() => {
   const headlineRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    if (!headlineRef.current || !containerRef.current) return;
+    if (!headlineRef.current) return;
     
     const split = new SplitType(headlineRef.current, { types: 'words' });
     
@@ -44,19 +46,19 @@ const KineticHeadline = memo(({ containerRef }: { containerRef: React.RefObject<
         "--fs-max": 48,
         ease: "none",
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: headlineRef.current.parentElement,
           start: "top top",
           end: "bottom top",
           scrub: 1.5,
         }
       });
-    }, containerRef);
+    }, headlineRef);
 
     return () => {
       split.revert();
       ctx.revert();
     };
-  }, [containerRef]);
+  }, []);
 
   return (
     <h1
@@ -210,10 +212,13 @@ export default function Hero() {
           </div>
         </div>
 
+        {/* 3D Video Panel Hologram Overlay */}
+        <Hero3DPanel videoUrl={VIDEOS[activeIndex]} />
+
         {/* Hero Content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center mt-20">
+        <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center mt-20 pointer-events-none">
           
-          <KineticHeadline containerRef={containerRef} />
+          <KineticHeadline />
           
           <div ref={subheadRef} className="mt-8 flex flex-col items-center gap-12 opacity-100 transition-opacity duration-500">
             {/* Quick Links Row */}
