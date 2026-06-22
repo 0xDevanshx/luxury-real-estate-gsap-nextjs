@@ -6,7 +6,9 @@ import SplitType from "split-type";
 import { Circle, CircleDot, Play, Pause, ChevronDown, Compass, MapPin, Key, Shield } from "lucide-react";
 import MagneticButton from "../global/MagneticButton";
 import dynamic from "next/dynamic";
-import { HERO_VIDEOS as VIDEOS } from "@/data/mockData";
+import { FEATURED_LISTINGS } from "@/data/mockData";
+
+const HERO_BACKGROUNDS = FEATURED_LISTINGS.map(l => l.image);
 
 const Hero3DPanel = dynamic(() => import("./Hero3DPanel"), { ssr: false });
 
@@ -75,66 +77,21 @@ KineticHeadline.displayName = "KineticHeadline";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
-  const videosRef = useRef<(HTMLVideoElement | null)[]>([]);
   const indicatorRef = useRef<HTMLDivElement>(null);
   const subheadRef = useRef<HTMLDivElement>(null);
   
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  // Video crossfade loop
+  // Removed video playback logic since we are using images now
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const nextVideo = videosRef.current[activeIndex];
-      if (!nextVideo) return;
-      
+    const interval = setInterval(() => {
       if (isPlaying) {
-        nextVideo.play().catch(() => {});
+        setActiveIndex((prev) => (prev + 1) % HERO_BACKGROUNDS.length);
       }
-      
-      videosRef.current.forEach((video, i) => {
-        if (!video) return;
-        if (i === activeIndex) {
-          gsap.to(video, { opacity: 1, duration: 1 });
-        } else {
-          gsap.to(video, { opacity: 0, duration: 1, onComplete: () => video.pause() });
-        }
-      });
-    }, containerRef);
-
-    let timeoutId: NodeJS.Timeout;
-    if (isPlaying) {
-      timeoutId = setTimeout(() => {
-        setActiveIndex((prev) => (prev + 1) % VIDEOS.length);
-      }, 5000);
-    }
-    
-    return () => {
-      clearTimeout(timeoutId);
-      ctx.revert();
-    };
-  }, [activeIndex, isPlaying]);
-
-  // IntersectionObserver to pause videos when out of view
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const video = entry.target as HTMLVideoElement;
-        const index = videosRef.current.indexOf(video);
-        if (entry.isIntersecting && isPlaying && index === activeIndex) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      });
-    }, { threshold: 0 });
-    
-    videosRef.current.forEach(v => {
-      if (v) observer.observe(v);
-    });
-    
-    return () => observer.disconnect();
-  }, [isPlaying, activeIndex]);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [isPlaying]);
 
   // Indicator bobbing
   useEffect(() => {
@@ -163,19 +120,14 @@ export default function Hero() {
         
         {/* Background Videos */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40">
-          {VIDEOS.map((src, idx) => (
-            <video
-              key={src}
-              ref={(el) => {
-                videosRef.current[idx] = el;
-              }}
-              src={src}
-              muted
-              playsInline
-              loop
-              poster="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1920"
-              className="absolute inset-0 w-full h-full object-cover opacity-0 will-change-transform"
-              style={{ opacity: idx === 0 ? 1 : 0 }}
+          {HERO_BACKGROUNDS.map((bg, idx) => (
+            <img
+              key={idx}
+              src={bg}
+              alt={`Luxury Property ${idx + 1}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 will-change-transform ${
+                idx === activeIndex ? "opacity-60" : "opacity-0"
+              }`}
             />
           ))}
         </div>
@@ -193,7 +145,7 @@ export default function Hero() {
             </button>
           </MagneticButton>
           <div className="flex gap-2 items-center">
-            {VIDEOS.map((_, idx) => (
+            {HERO_BACKGROUNDS.map((_, idx) => (
               <MagneticButton key={idx}>
                 <button
                   onClick={() => setActiveIndex(idx)}
@@ -209,7 +161,7 @@ export default function Hero() {
         </div>
 
         {/* 3D Video Panel Hologram Overlay */}
-        <Hero3DPanel videoUrl={VIDEOS[activeIndex]} />
+        <Hero3DPanel videoUrl={HERO_BACKGROUNDS[activeIndex]} />
 
         {/* Hero Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center mt-20 pointer-events-none">

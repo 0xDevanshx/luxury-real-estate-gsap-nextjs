@@ -107,7 +107,7 @@ export default function PressVideoSection() {
             }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1600"
+              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9"
               alt="Brand Film Thumbnail"
               fill
               className="object-cover opacity-60 transition-opacity duration-500 group-hover:opacity-100"

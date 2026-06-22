@@ -3,11 +3,11 @@
 import { useRef } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { ContactShadows, useVideoTexture } from "@react-three/drei";
+import { ContactShadows, useTexture } from "@react-three/drei";
 
-function CurvedVideo({ videoUrl }: { videoUrl: string }) {
+function CurvedImage({ imageUrl }: { imageUrl: string }) {
   const meshRef = useRef<THREE.Mesh>(null);
-  const texture = useVideoTexture(videoUrl, { crossOrigin: "Anonymous" });
+  const texture = useTexture(imageUrl);
   
   // Create a subtle curve: Radius=10, Height=4.5, Width~=8 (16:9 ratio)
   // thetaLength = 0.8 radians
@@ -53,7 +53,7 @@ export default function Hero3DPanel({ videoUrl }: { videoUrl: string }) {
       <Canvas camera={{ position: [0, 0, 7.5], fov: 45 }}>
         {/* We rotate the whole group so the cylinder segment faces the camera */}
         <group rotation={[0, Math.PI / 2, 0]}>
-          <CurvedVideo videoUrl={videoUrl} />
+          <CurvedImage imageUrl={videoUrl} />
         </group>
       </Canvas>
     </div>

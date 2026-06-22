@@ -9,21 +9,21 @@ const MAGAZINES = [
   {
     id: 1,
     title: "Luxe Estates Quarterly - Autumn 2025",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9",
     rotation: "-rotate-12",
     zIndex: "z-10",
   },
   {
     id: 2,
     title: "Luxe Estates Quarterly - Summer 2025",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
     rotation: "rotate-0",
     zIndex: "z-20",
   },
   {
     id: 3,
     title: "Luxe Estates Quarterly - Spring 2025",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
     rotation: "rotate-12",
     zIndex: "z-30",
   }
