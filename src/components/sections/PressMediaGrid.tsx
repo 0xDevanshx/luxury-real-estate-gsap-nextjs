@@ -52,7 +52,7 @@ export default function PressMediaGrid() {
 
     const items = sectionRef.current.querySelectorAll(".press-item");
 
-    const ctx = gsap.matchMedia(containerRef);
+    const ctx = gsap.matchMedia(sectionRef);
     ctx.add("(prefers-reduced-motion: no-preference)", () => {
       // Set initial states
       gsap.set(items, { opacity: 0, y: 50 });
