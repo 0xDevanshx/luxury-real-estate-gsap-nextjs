@@ -8,7 +8,7 @@ with a one-line note. One item per iteration — do not start the next.
 
 - [x] Root providers: Lenis + ScrollTrigger + gsap.context pattern — lenis initialized, smooth scroll verified, build clean
 - [x] Global interactive layer: custom cursor, scroll progress bar, floating back-to-top, magnetic button system — implemented and verified with browser subagent, build clean
-- [ ] Sticky header (transparent → blurred solid)
+- [x] Sticky header (transparent → blurred solid) — implemented with GSAP scroll scrub tween, verified via browser subagent, build clean
 - [ ] Hero: video crossfade slideshow + kinetic typography + SplitType headline
 - [ ] Hero: 3D video panel (React Three Fiber VideoTexture + cursor tilt)
 - [ ] Featured listings: horizontal scroll-jacked carousel (pinned, scrub)

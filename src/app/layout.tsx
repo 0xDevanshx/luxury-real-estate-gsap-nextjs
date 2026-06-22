@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "./providers/SmoothScrollProvider";
 import GlobalInteractiveLayer from "@/components/global/GlobalInteractiveLayer";
+import StickyHeader from "@/components/global/StickyHeader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-black text-white cursor-none">
         <SmoothScrollProvider>
           <GlobalInteractiveLayer />
+          <StickyHeader />
           {children}
         </SmoothScrollProvider>
       </body>
