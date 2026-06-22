@@ -12,7 +12,7 @@ import Image from "next/image";
 const TILES = [
   { id: 1, type: "image", bgUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9" },
   { id: 2, type: "text", content: "Global Reach" },
-  { id: 3, type: "image", bgUrl: "https://images.unsplash.com/photo-1600607687931-ceeb8cb36e33" },
+  { id: 3, type: "image", bgUrl: "https://images.unsplash.com/photo-1613977257363-707ba9348227" },
   { id: 4, type: "cta" }, // CTA tile
   { id: 5, type: "image", bgUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c" },
   { id: 6, type: "text", content: "Exclusive Access" },

@@ -11,8 +11,6 @@ import { FEATURED_LISTINGS } from "@/data/mockData";
 
 const HERO_BACKGROUNDS = FEATURED_LISTINGS.map(l => l.image);
 
-const Hero3DPanel = dynamic(() => import("./Hero3DPanel"), { ssr: false });
-
 // Extracted KineticHeadline to prevent React re-renders from destroying SplitType DOM nodes
 const KineticHeadline = memo(() => {
   const headlineRef = useRef<HTMLHeadingElement>(null);
@@ -168,8 +166,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* 3D Video Panel Hologram Overlay */}
-        <Hero3DPanel videoUrl={HERO_BACKGROUNDS[activeIndex]} />
+        {/* Removed Hero3DPanel Hologram Overlay */}
 
         {/* Hero Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center mt-20 pointer-events-none">

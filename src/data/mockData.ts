@@ -25,7 +25,7 @@ export const FEATURED_LISTINGS = [
     beds: 5,
     baths: 7,
     sqft: "10,200",
-    image: "https://images.unsplash.com/photo-1600607687931-ceeb8cb36e33",
+    image: "https://images.unsplash.com/photo-1613977257363-707ba9348227",
   },
   {
     id: 3,
@@ -88,7 +88,7 @@ export const PRESS_ITEMS = [
     title: "Luxe Estates Shatters Records with $120M Malibu Sale",
     date: "FEB 2026",
     link: "#",
-    image: "https://images.unsplash.com/photo-1600607687931-ceeb8cb36e33",
+    image: "https://images.unsplash.com/photo-1613977257363-707ba9348227",
   },
   {
     id: 3,

@@ -85,28 +85,31 @@ export default function FeaturedListings() {
               />
             </div>
             
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-100" />
 
-            <div className="relative z-10 p-6 lg:p-10 transform transition-transform duration-500 ease-out group-hover:-translate-y-4">
-              <div className="flex items-center gap-2 text-white/70 mb-3 text-xs uppercase tracking-widest">
-                <MapPin size={14} />
-                <span>{property.location}</span>
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-2 uppercase tracking-tight line-clamp-1">{property.title}</h3>
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between mt-4 gap-4">
-                <div>
-                  <p className="text-sm text-white/60 mb-1">Price</p>
-                  <p className="text-xl md:text-2xl font-light">{property.price}</p>
+            <div className="relative z-10 p-6 lg:p-8 flex flex-col justify-end h-full">
+              <div className="transform transition-transform duration-500 ease-out group-hover:-translate-y-2">
+                <div className="flex items-center gap-2 text-white/80 mb-2 text-[10px] md:text-xs uppercase tracking-widest font-semibold">
+                  <MapPin size={12} />
+                  <span>{property.location}</span>
                 </div>
-                <div className="flex gap-4 text-sm text-white/60 text-right">
+                <h3 className="text-xl md:text-2xl font-serif mb-4 tracking-tight line-clamp-2 drop-shadow-md">{property.title}</h3>
+                
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-t border-white/20 pt-4">
                   <div>
-                    <span className="block text-white font-medium">{property.beds}</span> Beds
+                    <p className="text-[10px] md:text-xs text-white/60 mb-1 uppercase tracking-widest">Price</p>
+                    <p className="text-lg md:text-xl font-light tracking-wide">{property.price}</p>
                   </div>
-                  <div>
-                    <span className="block text-white font-medium">{property.baths}</span> Baths
-                  </div>
-                  <div>
-                    <span className="block text-white font-medium">{property.sqft}</span> Sq.Ft
+                  <div className="flex gap-4 text-xs md:text-sm text-white/70 text-right font-light">
+                    <div>
+                      <span className="block text-white font-medium text-sm">{property.beds}</span> Beds
+                    </div>
+                    <div>
+                      <span className="block text-white font-medium text-sm">{property.baths}</span> Baths
+                    </div>
+                    <div>
+                      <span className="block text-white font-medium text-sm">{property.sqft}</span> Sq.Ft
+                    </div>
                   </div>
                 </div>
               </div>

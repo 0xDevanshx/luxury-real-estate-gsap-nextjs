@@ -63,20 +63,16 @@ export default function PressVideoSection() {
     <section className="relative w-full bg-black text-white py-24 md:py-32 overflow-hidden z-10">
       
       {/* Press Marquee */}
-      <div className="w-full border-y border-white/10 mb-24 md:mb-32 overflow-hidden flex whitespace-nowrap relative select-none">
-        {/* Double container for seamless CSS loop */}
-        <div className="flex animate-marquee min-w-full justify-around items-center gap-12 px-6 py-6">
-          {PRESS_LOGOS.map((logo, idx) => (
-            <span key={`1-${idx}`} className="text-2xl md:text-4xl font-serif italic text-white/50 tracking-wider">
-              {logo}
-            </span>
-          ))}
-        </div>
-        <div className="flex animate-marquee min-w-full justify-around items-center gap-12 px-6 py-6 absolute top-0 left-full h-full">
-          {PRESS_LOGOS.map((logo, idx) => (
-            <span key={`2-${idx}`} className="text-2xl md:text-4xl font-serif italic text-white/50 tracking-wider">
-              {logo}
-            </span>
+      <div className="w-full border-y border-white/10 mb-24 md:mb-32 overflow-hidden flex relative select-none bg-black">
+        <div className="flex animate-marquee-left min-w-max">
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="flex gap-16 px-8 py-8 items-center">
+              {PRESS_LOGOS.map((logo, idx) => (
+                <span key={`${i}-${idx}`} className="text-3xl md:text-5xl font-serif italic text-white/40 tracking-wider whitespace-nowrap">
+                  {logo}
+                </span>
+              ))}
+            </div>
           ))}
         </div>
       </div>
