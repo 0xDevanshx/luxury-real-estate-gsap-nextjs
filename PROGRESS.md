@@ -12,7 +12,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Hero: video crossfade slideshow + kinetic typography + SplitType headline — Verified responsive kinetic font scale, crossfades, and staggered text reveal via Browser Subagent
 - [x] Hero: 3D video panel (React Three Fiber VideoTexture + cursor tilt) — Verified visually, tilt interaction works and typography renders flawlessly on top
 - [x] Featured listings: horizontal scroll-jacked carousel (pinned, scrub) — Completed with GSAP pin, Unsplash images added to next.config.ts, build clean
-- [ ] Press strip + CSS 3D video thumbnail + lightbox player
+- [x] Press strip + CSS 3D video thumbnail + lightbox player — Implemented CSS 3D mouse tilt and GSAP lightbox. Build clean.
 - [ ] Founder spotlight: pinned section + portrait parallax + SplitType line bio
 - [ ] Stats: scroll-scrubbed counters (SplitType chars, reverse on scroll-up)
 - [ ] Company overview: SVG DrawSVG separator + scroll-progress color shift
