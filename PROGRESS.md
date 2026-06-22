@@ -14,7 +14,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Featured listings: horizontal scroll-jacked carousel (pinned, scrub) — Completed with GSAP pin, Unsplash images added to next.config.ts, build clean
 - [x] Press strip + CSS 3D video thumbnail + lightbox player — Implemented CSS 3D mouse tilt and GSAP lightbox. Build clean.
 - [x] Founder spotlight: pinned section + portrait parallax + SplitType line bio — Implemented with GSAP pin, portrait scale/pan, and staggered line text mask-reveal. Build clean.
-- [ ] Stats: scroll-scrubbed counters (SplitType chars, reverse on scroll-up)
+- [x] Stats: scroll-scrubbed counters (SplitType chars, reverse on scroll-up) — Verified GSAP scrub and staggered SplitType character reveal perfectly reverses mid-scroll
 - [ ] Company overview: SVG DrawSVG separator + scroll-progress color shift
 - [ ] CTA tile band: grid tiles + magnetic primary CTA
 - [ ] Before/after drag-to-compare slider (clip-path, keyboard accessible)
