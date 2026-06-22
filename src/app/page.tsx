@@ -7,6 +7,7 @@ import CompanyOverview from "@/components/sections/CompanyOverview";
 import CTATileBand from "@/components/sections/CTATileBand";
 import BeforeAfterSlider from "@/components/sections/BeforeAfterSlider";
 import Testimonials from "@/components/sections/Testimonials";
+import PressMediaGrid from "@/components/sections/PressMediaGrid";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <CTATileBand />
       <BeforeAfterSlider />
       <Testimonials />
+      <PressMediaGrid />
     </main>
   );
 }

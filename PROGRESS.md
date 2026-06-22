@@ -19,7 +19,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] CTA tile band: grid tiles + magnetic primary CTA — Verified 4x2 CSS grid staggered 3D flip animation and magnetic CTA interaction. Build clean.
 - [x] Before/after drag-to-compare slider (clip-path, keyboard accessible) — Implemented draggable slider with custom keyboard accessibility hooks. Build clean.
 - [x] Testimonials: Swiper autoplay + pause on hover + Quote icon — Implemented minimalist carousel with crossFade and pauseOnMouseEnter. Build clean.
-- [ ] Press/media grid: stagger reveal + hover overlay + ExternalLink icon
+- [x] Press/media grid: stagger reveal + hover overlay + ExternalLink icon — Implemented responsive 3-column grid with smooth hover overlay and GSAP stagger. Build clean.
 - [ ] Social-proof marquee: infinite CSS scroll, dual direction, pause on hover
 - [ ] Digital magazine showcase: stacked covers + float animation + lightbox
 - [ ] App showcase: CSS 3D phone tilt + real App Store / Google Play badges
