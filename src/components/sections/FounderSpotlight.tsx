@@ -20,7 +20,7 @@ const BioText = memo(() => {
     if (lines) {
       lines.forEach(line => {
         const content = line.innerHTML;
-        line.innerHTML = `<div class="line-inner" style="transform: translateY(100%); opacity: 0">${content}</div>`;
+        line.innerHTML = `<div class="line-inner">${content}</div>`;
       });
     }
 
@@ -33,35 +33,41 @@ const BioText = memo(() => {
       
       const inners = bioRef.current!.querySelectorAll('.line-inner');
       
-      gsap.to(inners, {
-        y: "0%",
-        opacity: 1,
-        stagger: 0.1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=100vh",
-          scrub: 1,
+      gsap.fromTo(inners, 
+        { y: "100%", opacity: 0 },
+        {
+          y: "0%",
+          opacity: 1,
+          stagger: 0.1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "+=100vh",
+            scrub: 1,
+          }
         }
-      });
+      );
     });
 
     mm.add("(max-width: 767px)", () => {
       // Mobile: Normal scroll without pin
       const inners = bioRef.current!.querySelectorAll('.line-inner');
       
-      gsap.to(inners, {
-        y: "0%",
-        opacity: 1,
-        stagger: 0.1,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: bioRef.current,
-          start: "top 80%",
+      gsap.fromTo(inners,
+        { y: "100%", opacity: 0 },
+        {
+          y: "0%",
+          opacity: 1,
+          stagger: 0.1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: bioRef.current,
+            start: "top 80%",
+          }
         }
-      });
+      );
     });
 
     return () => {

@@ -173,6 +173,7 @@ export default function Hero() {
               muted
               playsInline
               loop
+              poster="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1920"
               className="absolute inset-0 w-full h-full object-cover opacity-0 will-change-transform"
               style={{ opacity: idx === 0 ? 1 : 0 }}
             />

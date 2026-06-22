@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { X } from "lucide-react";
+import Link from "next/link";
 
 const MAGAZINES = [
   {
@@ -55,9 +56,9 @@ export default function MagazineShowcase() {
             </p>
           </div>
           <div>
-            <button className="px-8 py-4 bg-white text-black font-medium text-sm tracking-widest uppercase hover:bg-white/90 transition-colors rounded-full">
+            <Link href="#contact" className="px-8 py-4 bg-white text-black font-medium text-sm tracking-widest uppercase hover:bg-white/90 transition-colors rounded-full inline-block">
               Subscribe to Print
-            </button>
+            </Link>
           </div>
         </div>
 

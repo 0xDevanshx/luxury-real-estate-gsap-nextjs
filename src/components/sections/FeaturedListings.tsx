@@ -91,8 +91,8 @@ export default function FeaturedListings() {
                 <MapPin size={14} />
                 <span>{property.location}</span>
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-2 uppercase tracking-tight">{property.title}</h3>
-              <div className="flex items-end justify-between mt-6">
+              <h3 className="text-2xl md:text-3xl font-bold mb-2 uppercase tracking-tight line-clamp-1">{property.title}</h3>
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between mt-4 gap-4">
                 <div>
                   <p className="text-sm text-white/60 mb-1">Price</p>
                   <p className="text-xl md:text-2xl font-light">{property.price}</p>

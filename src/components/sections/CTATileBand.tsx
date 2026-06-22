@@ -6,15 +6,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
 import MagneticButton from "../global/MagneticButton";
 
+import Link from "next/link";
+
 const TILES = [
-  { id: 1, type: "empty" },
+  { id: 1, type: "image", bgUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format,compress&q=75&w=600" },
   { id: 2, type: "text", content: "Global Reach" },
-  { id: 3, type: "empty" },
+  { id: 3, type: "image", bgUrl: "https://images.unsplash.com/photo-1600607687931-ceeb8cb36e33?auto=format,compress&q=75&w=600" },
   { id: 4, type: "cta" }, // CTA tile
-  { id: 5, type: "empty" },
+  { id: 5, type: "image", bgUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format,compress&q=75&w=600" },
   { id: 6, type: "text", content: "Exclusive Access" },
-  { id: 7, type: "empty" },
-  { id: 8, type: "empty" },
+  { id: 7, type: "image", bgUrl: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format,compress&q=75&w=600" },
+  { id: 8, type: "image", bgUrl: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format,compress&q=75&w=600" },
 ];
 
 export default function CTATileBand() {
@@ -65,6 +67,13 @@ export default function CTATileBand() {
                 <div className="w-full h-full opacity-20 bg-gradient-to-br from-white/5 to-transparent rounded-sm" />
               )}
               
+              {tile.type === "image" && (
+                <div className="absolute inset-0 w-full h-full">
+                  <div className="absolute inset-0 bg-black/40 z-10 hover:bg-black/20 transition-colors duration-500 cursor-pointer" />
+                  <img src={tile.bgUrl} alt="Tile Image" className="w-full h-full object-cover opacity-60" />
+                </div>
+              )}
+              
               {tile.type === "text" && (
                 <>
                   <div className="w-2 h-2 rounded-full bg-white/30" />
@@ -80,10 +89,10 @@ export default function CTATileBand() {
                     Ready to elevate<br/>your lifestyle?
                   </h3>
                   <MagneticButton>
-                    <button className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest transition-transform duration-300 hover:scale-105">
+                    <Link href="#contact" className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest transition-transform duration-300 hover:scale-105">
                       <span>Start Your Journey</span>
                       <ArrowUpRight size={18} />
-                    </button>
+                    </Link>
                   </MagneticButton>
                 </div>
               )}

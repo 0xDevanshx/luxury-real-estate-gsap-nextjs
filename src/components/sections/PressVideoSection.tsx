@@ -63,16 +63,16 @@ export default function PressVideoSection() {
     <section className="relative w-full bg-black text-white py-24 md:py-32 overflow-hidden z-10">
       
       {/* Press Marquee */}
-      <div className="w-full border-y border-white/10 py-6 mb-24 md:mb-32 overflow-hidden flex whitespace-nowrap relative select-none">
+      <div className="w-full border-y border-white/10 mb-24 md:mb-32 overflow-hidden flex whitespace-nowrap relative select-none">
         {/* Double container for seamless CSS loop */}
-        <div className="flex animate-marquee min-w-full justify-around items-center gap-12 px-6">
+        <div className="flex animate-marquee min-w-full justify-around items-center gap-12 px-6 py-6">
           {PRESS_LOGOS.map((logo, idx) => (
             <span key={`1-${idx}`} className="text-2xl md:text-4xl font-serif italic text-white/50 tracking-wider">
               {logo}
             </span>
           ))}
         </div>
-        <div className="flex animate-marquee min-w-full justify-around items-center gap-12 px-6 absolute top-6 left-full">
+        <div className="flex animate-marquee min-w-full justify-around items-center gap-12 px-6 py-6 absolute top-0 left-full h-full">
           {PRESS_LOGOS.map((logo, idx) => (
             <span key={`2-${idx}`} className="text-2xl md:text-4xl font-serif italic text-white/50 tracking-wider">
               {logo}

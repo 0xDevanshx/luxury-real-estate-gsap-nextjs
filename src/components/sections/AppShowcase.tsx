@@ -3,6 +3,7 @@
 import { useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import { Apple, Play } from "lucide-react";
+import Link from "next/link";
 
 export default function AppShowcase() {
   const phoneRef = useRef<HTMLDivElement>(null);
@@ -50,22 +51,22 @@ export default function AppShowcase() {
           
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
             {/* App Store Badge */}
-            <button className="flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-black/80 transition-colors">
-              <Apple size={28} className="fill-white" />
+            <Link href="#" className="flex items-center gap-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-xl px-6 py-4 transition-colors">
+              <Apple size={32} />
               <div className="flex flex-col items-start">
-                <span className="text-[10px] uppercase tracking-wider opacity-70 leading-none">Download on the</span>
-                <span className="text-lg font-medium leading-none mt-1">App Store</span>
+                <span className="text-xs text-white/70 uppercase tracking-widest">Download on the</span>
+                <span className="text-xl font-medium leading-none mt-1">App Store</span>
               </div>
-            </button>
-            
+            </Link>
+
             {/* Google Play Badge */}
-            <button className="flex items-center gap-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-black/80 transition-colors">
+            <Link href="#" className="flex items-center gap-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 rounded-xl px-6 py-4 transition-colors">
               <Play size={26} className="fill-white" />
               <div className="flex flex-col items-start">
-                <span className="text-[10px] uppercase tracking-wider opacity-70 leading-none">GET IT ON</span>
-                <span className="text-lg font-medium leading-none mt-1">Google Play</span>
+                <span className="text-xs text-white/70 uppercase tracking-widest">Get it on</span>
+                <span className="text-xl font-medium leading-none mt-1">Google Play</span>
               </div>
-            </button>
+            </Link>
           </div>
         </div>
 
