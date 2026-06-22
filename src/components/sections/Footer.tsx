@@ -51,21 +51,22 @@ export default function Footer() {
               <h4 className="text-sm font-bold tracking-widest uppercase text-white/40 mb-2">Portfolio</h4>
               <Link href="#" className="text-white/70 hover:text-white font-light transition-colors">Residential</Link>
               <Link href="#" className="text-white/70 hover:text-white font-light transition-colors">Commercial</Link>
-              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors">Off-Market</Link>
-              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors">Developments</Link>
+              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors text-lg">Residential</Link>
+              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors text-lg">Commercial</Link>
+              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors text-lg">Off-Market</Link>
+              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors text-lg">Developments</Link>
             </div>
 
             <div className="flex flex-col gap-4">
               <h4 className="text-sm font-bold tracking-widest uppercase text-white/40 mb-2">Company</h4>
-              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors">About Us</Link>
-              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors">Advisors</Link>
-              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors">Journal</Link>
-              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors">Contact</Link>
+              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors text-lg">About Us</Link>
+              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors text-lg">Advisors</Link>
+              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors text-lg">Journal</Link>
+              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors text-lg">Contact</Link>
             </div>
 
             <div className="flex flex-col gap-4 col-span-2 md:col-span-1">
               <h4 className="text-sm font-bold tracking-widest uppercase text-white/40 mb-2">Legal</h4>
-              <Link href="#" className="text-white/70 hover:text-white font-light transition-colors">Privacy Policy</Link>
               <Link href="#" className="text-white/70 hover:text-white font-light transition-colors">Terms of Service</Link>
               <Link href="#" className="text-white/70 hover:text-white font-light transition-colors">Cookie Policy</Link>
             </div>

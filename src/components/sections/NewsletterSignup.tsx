@@ -74,15 +74,16 @@ export default function NewsletterSignup() {
               onSubmit={handleSubmit(onSubmit)} 
               className="w-full max-w-md mx-auto text-left animate-in fade-in duration-500"
             >
-              <div className="relative mb-6 group">
+              <div className="relative">
                 <input
-                  {...register("email")}
-                  type="text"
+                  id="email"
+                  type="email"
                   placeholder="Enter your email address"
-                  disabled={isSubmitting}
-                  className={`w-full bg-transparent border-b ${
-                    errors.email ? "border-red-500 focus:border-red-400" : "border-white/30 focus:border-white"
-                  } py-4 pr-12 text-lg md:text-xl font-light placeholder:text-white/20 outline-none transition-colors disabled:opacity-50`}
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-error" : undefined}
+                  className="w-full bg-transparent border-b border-white/40 hover:border-white/70 focus:border-white py-4 pr-12 text-lg lg:text-xl outline-none transition-colors placeholder:text-white/40"
+                  {...register("email")}
+                  disabled={isSubmitting || isSuccess}
                 />
                 
                 <button
@@ -100,9 +101,10 @@ export default function NewsletterSignup() {
                 </button>
                 
                 {errors.email && (
-                  <span className="absolute -bottom-6 left-0 text-red-500 text-xs font-medium tracking-wide">
-                    {errors.email.message}
-                  </span>
+                  <p id="email-error" className="absolute -bottom-8 left-0 text-amber-500/90 text-sm mt-2">{errors.email.message}</p>
+                )}
+                {errors.consent && (
+                  <p className="absolute -bottom-14 left-0 text-amber-500/90 text-sm mt-2">{errors.consent.message}</p>
                 )}
               </div>
 
@@ -114,19 +116,14 @@ export default function NewsletterSignup() {
                     type="checkbox"
                     disabled={isSubmitting}
                     className={`w-4 h-4 rounded-sm border ${
-                      errors.consent ? "border-red-500" : "border-white/30"
+                      errors.consent ? "border-amber-500" : "border-white/40"
                     } bg-transparent appearance-none checked:bg-white checked:border-white relative transition-colors cursor-pointer checked:after:content-['✓'] checked:after:absolute checked:after:text-black checked:after:text-xs checked:after:font-bold checked:after:left-[2px] checked:after:top-[-1px] disabled:opacity-50`}
                   />
                 </div>
                 <div className="flex flex-col">
-                  <label htmlFor="consent" className="text-xs text-white/40 cursor-pointer hover:text-white/60 transition-colors leading-relaxed">
+                  <label htmlFor="consent" className="text-sm text-white/60 cursor-pointer hover:text-white/80 transition-colors">
                     I consent to receiving marketing communications and agree to the <a href="#" className="underline hover:text-white transition-colors">Privacy Policy</a>.
                   </label>
-                  {errors.consent && (
-                    <span className="text-red-500 text-xs font-medium tracking-wide mt-1">
-                      {errors.consent.message}
-                    </span>
-                  )}
                 </div>
               </div>
             </form>

@@ -6,14 +6,9 @@ import SplitType from "split-type";
 import { Circle, CircleDot, Play, Pause, ChevronDown, Compass, MapPin, Key, Shield } from "lucide-react";
 import MagneticButton from "../global/MagneticButton";
 import dynamic from "next/dynamic";
+import { HERO_VIDEOS as VIDEOS } from "@/data/mockData";
 
 const Hero3DPanel = dynamic(() => import("./Hero3DPanel"), { ssr: false });
-
-const VIDEOS = [
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-  "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-];
 
 // Extracted KineticHeadline to prevent React re-renders from destroying SplitType DOM nodes
 const KineticHeadline = memo(() => {
@@ -241,8 +236,8 @@ export default function Hero() {
         </div>
 
         {/* Scroll Down Indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-70">
-          <span className="text-xs uppercase tracking-widest font-medium">Scroll to Discover</span>
+        <div className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-70">
+          <span className="text-[10px] md:text-xs uppercase tracking-widest font-medium">Scroll to Discover</span>
           <div ref={indicatorRef} className="will-change-transform">
             <ChevronDown size={24} />
           </div>
