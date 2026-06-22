@@ -8,6 +8,7 @@ import CTATileBand from "@/components/sections/CTATileBand";
 import BeforeAfterSlider from "@/components/sections/BeforeAfterSlider";
 import Testimonials from "@/components/sections/Testimonials";
 import PressMediaGrid from "@/components/sections/PressMediaGrid";
+import SocialMarquee from "@/components/sections/SocialMarquee";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <BeforeAfterSlider />
       <Testimonials />
       <PressMediaGrid />
+      <SocialMarquee />
     </main>
   );
 }
