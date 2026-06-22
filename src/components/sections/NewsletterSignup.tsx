@@ -44,7 +44,7 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <section className="relative w-full bg-[#111] text-white py-24 md:py-32 z-10 border-t border-white/5">
+    <section id="contact" className="relative w-full bg-[#111] text-white py-24 md:py-32 z-10 border-t border-white/5">
       <div className="max-w-screen-md mx-auto px-6 text-center">
         
         <div className="mb-12">

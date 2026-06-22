@@ -47,7 +47,8 @@ export default function FeaturedListings() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full h-screen bg-[#0a0a0a] text-white overflow-hidden py-24">
+    <div id="search" className="w-full">
+      <section id="properties" ref={sectionRef} className="relative w-full h-screen bg-[#0a0a0a] text-white overflow-hidden py-24">
       <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-80 pointer-events-none" />
 
       <div className="absolute top-24 left-6 lg:left-12 z-20 pointer-events-none mix-blend-difference">
@@ -123,5 +124,6 @@ export default function FeaturedListings() {
         ))}
       </div>
     </section>
+    </div>
   );
 }
