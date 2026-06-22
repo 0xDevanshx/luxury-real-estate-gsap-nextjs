@@ -21,7 +21,7 @@ with a one-line note. One item per iteration — do not start the next.
 - [x] Testimonials: Swiper autoplay + pause on hover + Quote icon — Implemented minimalist carousel with crossFade and pauseOnMouseEnter. Build clean.
 - [x] Press/media grid: stagger reveal + hover overlay + ExternalLink icon — Implemented responsive 3-column grid with smooth hover overlay and GSAP stagger. Build clean.
 - [x] Social-proof marquee: infinite CSS scroll, dual direction, pause on hover — Implemented seamless CSS marquee with group-hover pause state. Build clean.
-- [ ] Digital magazine showcase: stacked covers + float animation + lightbox
+- [x] Digital magazine showcase: stacked covers + float animation + lightbox — Implemented overlapping 3D stack with custom float keyframes and interactive CSS lightbox. Build clean.
 - [ ] App showcase: CSS 3D phone tilt + real App Store / Google Play badges
 - [ ] Philanthropy section: background video + lightbox + SplitType reveal
 - [ ] Newsletter signup: React Hook Form + Zod + inline validation + success state
