@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-
+import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import MagneticButton from "../global/MagneticButton";
 
@@ -41,44 +39,11 @@ const ImageTile = ({
   tile: { id: number; type: string; bgUrl?: string; content?: string };
   priority?: boolean;
 }) => {
-  const tileRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!tileRef.current) return;
-    const { left, top, width, height } =
-      tileRef.current.getBoundingClientRect();
-    const x = (e.clientX - left) / width - 0.5; // Range: -0.5 to 0.5
-    const y = (e.clientY - top) / height - 0.5; // Range: -0.5 to 0.5
-
-    // Smooth, very subtle movement to create depth
-    gsap.to(tileRef.current.querySelector(".image-mover"), {
-      x: x * 15, // max 7.5px shift
-      y: y * 15,
-      duration: 0.6,
-      ease: "power2.out",
-    });
-  };
-
-  const handleMouseLeave = () => {
-    if (!tileRef.current) return;
-    gsap.to(tileRef.current.querySelector(".image-mover"), {
-      x: 0,
-      y: 0,
-      duration: 1,
-      ease: "power3.out",
-    });
-  };
-
   return (
-    <div
-      ref={tileRef}
-      className="absolute inset-0 w-full h-full group/image cursor-pointer overflow-hidden shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] transition-shadow duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div className="absolute inset-0 bg-black/30 z-10 transition-opacity duration-700 ease-out group-hover/image:opacity-0 pointer-events-none mix-blend-multiply" />
+    <div className="absolute inset-0 w-full h-full group/image overflow-hidden shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] transition-shadow duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)]">
+      <div className="absolute inset-0 bg-black/30 z-10 transition-opacity duration-300 group-hover/image:opacity-0 pointer-events-none mix-blend-multiply" />
 
-      <div className="image-mover w-full h-full absolute inset-0 transform-gpu will-change-transform scale-[1.03]">
+      <div className="w-full h-full absolute inset-0">
         <Image
           src={tile.bgUrl!}
           alt="Premium Real Estate"
@@ -86,8 +51,7 @@ const ImageTile = ({
           sizes="(max-width: 768px) 50vw, 25vw"
           priority={priority}
           unoptimized={true}
-          // Removed opacity-60 and added premium CSS filters for a luxury feel
-          className="object-cover transform-gpu transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/image:scale-[1.05] group-hover/image:brightness-110 group-hover/image:contrast-[1.05] group-hover/image:saturate-[1.05] will-change-[transform,filter]"
+          className="object-cover transition-transform duration-300 group-hover/image:scale-[1.05]"
         />
       </div>
     </div>
@@ -95,45 +59,14 @@ const ImageTile = ({
 };
 
 export default function CTATileBand() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    const tiles = sectionRef.current.querySelectorAll(".cta-tile");
-
-    const ctx = gsap.matchMedia(sectionRef);
-    ctx.add("(prefers-reduced-motion: no-preference)", () => {
-      // Stagger animate in directly from CSS initial states
-      gsap.to(tiles, {
-        opacity: 1,
-        rotateX: 0,
-        duration: 1,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        },
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full bg-[#111111] text-white py-24 z-10"
-      style={{ perspective: "1000px" }}
-    >
+    <section className="relative w-full bg-[#111111] text-white py-24 z-10">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 border-t border-l border-white/10">
           {TILES.map((tile, idx) => (
             <div
               key={tile.id}
-              // Set initial state via CSS: opacity-0 and rotateX(-89.9deg) instead of -90deg to force GPU decoding on mount
-              className={`cta-tile opacity-0 [transform:rotateX(-89.9deg)] [transform-origin:50%_50%_-50px] relative aspect-square border-r border-b border-white/10 flex flex-col justify-between p-6 transition-all duration-500 hover:z-20 ${tile.type === "cta" ? "col-span-2 md:col-span-2 row-span-2 md:row-span-1 aspect-auto md:aspect-[2/1] bg-white/5" : ""}`}
+              className={`relative aspect-square border-r border-b border-white/10 flex flex-col justify-between p-6 transition-all duration-300 hover:z-20 ${tile.type === "cta" ? "col-span-2 md:col-span-2 row-span-2 md:row-span-1 aspect-auto md:aspect-[2/1] bg-white/5" : ""}`}
             >
               {tile.type === "empty" && (
                 <div className="w-full h-full opacity-20 bg-gradient-to-br from-white/5 to-transparent rounded-sm" />
