@@ -8,28 +8,28 @@ import Link from "next/link";
 import Image from "next/image";
 
 const TILES = [
-  { id: 1, type: "image", bgUrl: "/images/img-3.jpg" },
-  { id: 2, type: "text", content: "Global Reach", bgUrl: "/images/img-4.jpg" },
+  { id: 1, type: "image", bgUrl: "/images/img-3.webp" },
+  { id: 2, type: "text", content: "Global Reach", bgUrl: "/images/img-4.webp" },
   {
     id: 3,
     type: "image",
     bgUrl: "https://images.unsplash.com/photo-1613977257363-707ba9348227",
   },
-  { id: 9, type: "image", bgUrl: "/images/img-5.jpg" }, // Added to fill the CSS Grid gap before CTA
+  { id: 9, type: "image", bgUrl: "/images/img-5.webp" }, // Added to fill the CSS Grid gap before CTA
   { id: 4, type: "cta" }, // CTA tile
-  { id: 5, type: "image", bgUrl: "/images/img-6.jpg" },
+  { id: 5, type: "image", bgUrl: "/images/img-6.webp" },
   {
     id: 6,
     type: "text",
     content: "Exclusive Access",
-    bgUrl: "/images/img-7.jpg",
+    bgUrl: "/images/img-7.webp",
   },
   {
     id: 7,
     type: "image",
     bgUrl: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3",
   },
-  { id: 8, type: "image", bgUrl: "/images/img-8.jpg" },
+  { id: 8, type: "image", bgUrl: "/images/img-8.webp" },
 ];
 
 const ImageTile = ({

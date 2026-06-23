@@ -115,7 +115,7 @@ export default function PressVideoSection() {
             }}
           >
             <Image
-              src="/images/img-3.jpg"
+              src="/images/img-3.webp"
               alt="Brand Film Thumbnail"
               fill
               className="object-cover opacity-60 transition-opacity duration-500 group-hover:opacity-100"

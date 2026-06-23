@@ -111,7 +111,7 @@ export default function FounderSpotlight() {
         <div className="relative w-full aspect-[3/4] max-h-[70vh] overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
           <Image
             ref={imageRef}
-            src="/images/img-9.jpg"
+            src="/images/img-9.webp"
             alt="Founder Portrait"
             fill
             className="object-cover origin-center will-change-transform"

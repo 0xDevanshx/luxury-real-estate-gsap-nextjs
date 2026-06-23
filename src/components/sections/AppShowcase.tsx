@@ -96,7 +96,7 @@ export default function AppShowcase() {
           >
             <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-zinc-900 shadow-inner">
               <Image
-                src="/images/img-1.jpg"
+                src="/images/img-1.webp"
                 alt="App Interface Preview"
                 fill
                 className="object-cover"

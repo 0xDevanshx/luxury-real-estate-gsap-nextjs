@@ -4,8 +4,8 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const BEFORE_IMAGE = "/before.png";
-const AFTER_IMAGE = "/after.png";
+const BEFORE_IMAGE = "/before.webp";
+const AFTER_IMAGE = "/after.webp";
 
 export default function BeforeAfterSlider() {
   const [position, setPosition] = useState(50); // Percentage 0-100

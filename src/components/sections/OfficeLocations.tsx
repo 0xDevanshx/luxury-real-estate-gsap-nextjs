@@ -9,7 +9,7 @@ const OFFICES = [
   {
     id: 1,
     city: "New York",
-    image: "/images/img-11.jpg",
+    image: "/images/img-11.webp",
     address: "1 Central Park West, New York, NY 10023",
     phone: "+1 (212) 555-0198",
     email: "ny@luxeestates.com",
@@ -17,7 +17,7 @@ const OFFICES = [
   {
     id: 2,
     city: "London",
-    image: "/images/img-12.jpg",
+    image: "/images/img-12.webp",
     address: "1 Hyde Park Corner, London W1J 7NT",
     phone: "+44 20 7946 0958",
     email: "london@luxeestates.com",
@@ -25,7 +25,7 @@ const OFFICES = [
   {
     id: 3,
     city: "Dubai",
-    image: "/images/img-13.jpg",
+    image: "/images/img-13.webp",
     address: "Burj Khalifa Boulevard, Downtown Dubai",
     phone: "+971 4 366 1688",
     email: "dubai@luxeestates.com",
