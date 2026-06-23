@@ -99,7 +99,7 @@ export default function BeforeAfterSlider() {
               className="object-cover object-center grayscale-[0.3]"
               sizes="100vw"
             />
-            <div className="absolute top-6 left-6 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest text-white">
+            <div className="absolute top-6 right-6 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest text-white">
               Before
             </div>
           </div>
@@ -116,7 +116,7 @@ export default function BeforeAfterSlider() {
               className="object-cover object-center"
               sizes="100vw"
             />
-            <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest text-black">
+            <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest text-black">
               After
             </div>
           </div>
