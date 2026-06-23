@@ -22,9 +22,11 @@ export default function FeaturedListings() {
 
       const getScrollAmount = () => {
         const containerWidth = container.scrollWidth;
-        const wrapperWidth =
-          container.parentElement?.offsetWidth || window.innerWidth;
-        return -(containerWidth - wrapperWidth);
+        const viewportWidth = window.innerWidth;
+        // The container starts at the wrapper's left edge (which is centered if viewport > 1440)
+        const initialLeft = viewportWidth > 1440 ? (viewportWidth - 1440) / 2 : 0;
+        // Shift amount to make the right edge of the container perfectly align with the right edge of the screen
+        return viewportWidth - (containerWidth + initialLeft);
       };
 
       const tween = gsap.to(container, {
