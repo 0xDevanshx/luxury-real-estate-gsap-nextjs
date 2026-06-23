@@ -1,8 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-
 import { ExternalLink } from "lucide-react";
 
 const PRESS_DATA = [
@@ -48,40 +45,8 @@ const PRESS_DATA = [
 ];
 
 export default function PressMediaGrid() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    const items = sectionRef.current.querySelectorAll(".press-item");
-
-    const ctx = gsap.matchMedia(sectionRef);
-    ctx.add("(prefers-reduced-motion: no-preference)", () => {
-      // Set initial states
-      gsap.set(items, { opacity: 0, y: 50 });
-
-      // Stagger animate in
-      gsap.to(items, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full bg-[#0a0a0a] text-white py-32 md:py-48 z-10 border-t border-white/5"
-    >
+    <section className="relative w-full bg-[#0a0a0a] text-white py-32 md:py-48 z-10 border-t border-white/5">
       <div className="max-w-screen-2xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
@@ -98,9 +63,9 @@ export default function PressMediaGrid() {
           {PRESS_DATA.map((item) => (
             <div
               key={item.id}
-              className="press-item group relative bg-[#111111] border border-white/10 rounded-xl p-8 overflow-hidden cursor-pointer"
+              className="group relative bg-[#111111] border border-white/10 rounded-xl p-8 overflow-hidden cursor-pointer hover:border-white/20 transition-colors duration-300"
             >
-              <div className="flex flex-col h-full justify-between relative z-10 transition-transform duration-500 group-hover:-translate-y-4">
+              <div className="flex flex-col h-full justify-between relative z-10 transition-transform duration-300 group-hover:-translate-y-4">
                 <div>
                   <span className="text-xs font-bold tracking-widest uppercase text-white/40 mb-6 block">
                     {item.publication}
@@ -115,7 +80,7 @@ export default function PressMediaGrid() {
                 </span>
               </div>
 
-              <div className="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out flex items-end justify-between p-8 z-0">
+              <div className="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out flex items-end justify-between p-8 z-0">
                 <span className="text-xs font-bold tracking-widest uppercase text-white">
                   Read Article
                 </span>
