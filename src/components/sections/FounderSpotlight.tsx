@@ -3,7 +3,6 @@
 import { useEffect, useRef, memo } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 
 const BioText = memo(() => {
@@ -62,7 +61,7 @@ const BioText = memo(() => {
   return (
     <div
       ref={bioRef}
-      className="text-lg md:text-xl lg:text-2xl font-light leading-relaxed tracking-tight text-white/85"
+      className="text-2xl md:text-3xl lg:text-4xl font-serif font-light leading-snug tracking-normal text-white/90 text-justify hyphens-auto"
     >
       &quot;Real estate is not just about transactions; it&apos;s about curating
       a legacy. We established Luxe Estates to redefine the boundaries of modern
