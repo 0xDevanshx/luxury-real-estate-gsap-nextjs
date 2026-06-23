@@ -88,7 +88,6 @@ export default function BeforeAfterSlider() {
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
-          onPointerLeave={handlePointerUp}
         >
           {/* Before Image (Bottom) */}
           <div className="absolute inset-0">
