@@ -103,7 +103,7 @@ export default function Testimonials() {
             autoplay={{
               delay: 4000,
               disableOnInteraction: false,
-              pauseOnMouseEnter: true,
+              pauseOnMouseEnter: false,
             }}
             slidesPerView="auto"
             centeredSlides={true}
