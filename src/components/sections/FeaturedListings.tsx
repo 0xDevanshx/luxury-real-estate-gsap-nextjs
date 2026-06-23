@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ArrowRight, MapPin } from "lucide-react";
-import MagneticButton from "../global/MagneticButton";
+
 import { FEATURED_LISTINGS as LISTINGS } from "@/data/mockData";
 
 export default function FeaturedListings() {
@@ -82,7 +82,7 @@ export default function FeaturedListings() {
               key={property.id} 
               // Fixed width (lg:w-[600px]) and controlled negative margins (lg:-ml-[150px])
               // forces the cards to physically overlap exactly as they do in the approved 15-inch design.
-              className={`group relative flex-shrink-0 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[600px] h-[60vh] flex flex-col justify-end overflow-hidden cursor-pointer shadow-[0_0_40px_rgba(0,0,0,0.6)] border border-white/5 transition-all duration-500 hover:-translate-y-4 ${idx > 0 ? 'ml-4 lg:-ml-[150px]' : ''}`}
+              className={`group relative flex-shrink-0 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[600px] h-[60vh] flex flex-col justify-end overflow-hidden cursor-pointer shadow-[0_0_40px_rgba(0,0,0,0.6)] border border-white/5 transition-all duration-500 hover:-translate-y-4 ${idx > 0 ? 'ml-4 lg:-ml-[20px]' : ''}`}
               onMouseDown={() => setIsDragging(true)}
               onMouseUp={() => setIsDragging(false)}
               style={{ cursor: isDragging ? "grabbing" : "grab", zIndex: idx }}
@@ -128,14 +128,6 @@ export default function FeaturedListings() {
               </div>
             </div>
 
-            {/* Hover Action Button */}
-            <div className="absolute top-6 right-6 opacity-0 translate-x-4 transition-all duration-500 ease-out group-hover:opacity-100 group-hover:translate-x-0">
-              <MagneticButton>
-                <div className="bg-white text-black p-4 rounded-full">
-                  <ArrowRight size={20} />
-                </div>
-              </MagneticButton>
-            </div>
           </div>
           ))}
         </div>

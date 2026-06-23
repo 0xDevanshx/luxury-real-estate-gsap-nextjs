@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 import { ArrowUpRight } from "lucide-react";
@@ -19,6 +19,59 @@ const TILES = [
   { id: 7, type: "image", bgUrl: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3" },
   { id: 8, type: "image", bgUrl: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c" },
 ];
+
+const ImageTile = ({ tile }: { tile: { id: number; type: string; bgUrl?: string; content?: string } }) => {
+  const tileRef = useRef<HTMLDivElement>(null);
+  
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!tileRef.current) return;
+    const { left, top, width, height } = tileRef.current.getBoundingClientRect();
+    const x = (e.clientX - left) / width - 0.5; // Range: -0.5 to 0.5
+    const y = (e.clientY - top) / height - 0.5; // Range: -0.5 to 0.5
+    
+    // Smooth, very subtle movement to create depth
+    gsap.to(tileRef.current.querySelector('.image-mover'), {
+      x: x * 15, // max 7.5px shift
+      y: y * 15,
+      duration: 0.6,
+      ease: "power2.out",
+    });
+  };
+
+  const handleMouseLeave = () => {
+    if (!tileRef.current) return;
+    gsap.to(tileRef.current.querySelector('.image-mover'), {
+      x: 0,
+      y: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+  };
+
+  return (
+    <div 
+      ref={tileRef}
+      className="absolute inset-0 w-full h-full group/image cursor-pointer overflow-hidden shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] transition-shadow duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Subtle overlay that fades out on hover to brighten the image */}
+      <div className="absolute inset-0 bg-black/30 z-10 transition-opacity duration-700 ease-out group-hover/image:opacity-0 pointer-events-none mix-blend-multiply" />
+      
+      {/* The mover element handles the parallax shift without conflicting with Tailwind hover states */}
+      <div className="image-mover w-full h-full absolute inset-0 transform-gpu will-change-transform scale-[1.03]">
+        <Image 
+          src={tile.bgUrl!} 
+          alt="Premium Real Estate" 
+          fill 
+          sizes="(max-width: 768px) 50vw, 25vw" 
+          // Removed opacity-60 and added premium CSS filters for a luxury feel
+          className="object-cover transform-gpu transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/image:scale-[1.05] group-hover/image:brightness-110 group-hover/image:contrast-[1.05] group-hover/image:saturate-[1.05] will-change-[transform,filter]" 
+        />
+      </div>
+    </div>
+  );
+};
 
 export default function CTATileBand() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -62,17 +115,14 @@ export default function CTATileBand() {
           {TILES.map((tile) => (
             <div 
               key={tile.id} 
-              className={`cta-tile relative aspect-square border-r border-b border-white/10 flex flex-col justify-between p-6 ${tile.type === 'cta' ? 'col-span-2 md:col-span-2 row-span-2 md:row-span-1 aspect-auto md:aspect-[2/1] bg-white/5' : ''}`}
+              className={`cta-tile relative aspect-square border-r border-b border-white/10 flex flex-col justify-between p-6 transition-all duration-500 hover:z-20 ${tile.type === 'cta' ? 'col-span-2 md:col-span-2 row-span-2 md:row-span-1 aspect-auto md:aspect-[2/1] bg-white/5' : ''}`}
             >
               {tile.type === "empty" && (
                 <div className="w-full h-full opacity-20 bg-gradient-to-br from-white/5 to-transparent rounded-sm" />
               )}
               
               {tile.type === "image" && (
-                <div className="absolute inset-0 w-full h-full">
-                  <div className="absolute inset-0 bg-black/40 z-10 hover:bg-black/20 transition-colors duration-500 cursor-pointer" />
-                  <Image src={tile.bgUrl!} alt="Tile Image" fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover opacity-60" />
-                </div>
+                <ImageTile tile={tile} />
               )}
               
               {tile.type === "text" && (
