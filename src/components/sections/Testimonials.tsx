@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Quote } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
+import { Autoplay } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
@@ -90,7 +91,7 @@ export default function Testimonials() {
   return (
     <section className="relative w-full bg-[#111111] text-white py-32 md:py-48 z-10 border-t border-white/5 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 flex flex-col items-center">
-        
+
         <div className="text-center mb-16">
           <h2 className="text-sm uppercase tracking-widest text-white/50 mb-4">Client Perspectives</h2>
         </div>
@@ -98,6 +99,12 @@ export default function Testimonials() {
         {/* The Slider Section */}
         <div className="w-[100vw] relative">
           <Swiper
+            modules={[Autoplay]}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
             slidesPerView="auto"
             centeredSlides={true}
             spaceBetween={40}
@@ -111,13 +118,12 @@ export default function Testimonials() {
             {TESTIMONIALS.map((testimonial) => (
               <SwiperSlide key={testimonial.id} className="!w-[85vw] md:!w-[60vw] max-w-[800px]">
                 {({ isActive }) => (
-                  <div 
-                    className={`flex flex-col items-center text-center px-4 md:px-12 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-                      isActive ? "opacity-100 scale-100" : "opacity-20 scale-90 blur-[2px]"
-                    }`}
+                  <div
+                    className={`flex flex-col items-center text-center px-4 md:px-12 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? "opacity-100 scale-100" : "opacity-20 scale-90 blur-[2px]"
+                      }`}
                   >
                     <Quote size={40} className="text-white/20 mb-10" strokeWidth={1} />
-                    
+
                     {/* Fixed Height Quote Container to prevent vertical layout shifts */}
                     <div className="h-[200px] md:h-[180px] lg:h-[160px] flex items-center justify-center w-full">
                       <blockquote className="text-2xl md:text-4xl lg:text-5xl font-light leading-snug tracking-tight text-white/90">
@@ -134,13 +140,12 @@ export default function Testimonials() {
         {/* Fixed Author Container (Does not slide, only cross-fades) */}
         <div className="relative w-full h-[120px] mt-16 flex items-center justify-center">
           {TESTIMONIALS.map((testimonial, idx) => (
-            <div 
+            <div
               key={`author-${testimonial.id}`}
-              className={`absolute flex flex-col items-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
-                activeIndex === idx 
-                  ? "opacity-100 translate-y-0" 
+              className={`absolute flex flex-col items-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${activeIndex === idx
+                  ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4 pointer-events-none"
-              }`}
+                }`}
             >
               <div className="w-8 h-[1px] bg-white/30 mb-6" />
               <cite className="text-lg font-medium not-italic text-white">
@@ -154,10 +159,9 @@ export default function Testimonials() {
         </div>
 
         {/* Discoverability Hint */}
-        <div 
-          className={`mt-12 transition-all duration-1000 ease-in-out ${
-            hasInteracted ? "opacity-0 translate-y-4 pointer-events-none" : "opacity-100 translate-y-0"
-          }`}
+        <div
+          className={`mt-12 transition-all duration-1000 ease-in-out ${hasInteracted ? "opacity-0 translate-y-4 pointer-events-none" : "opacity-100 translate-y-0"
+            }`}
         >
           <p className="text-[11px] md:text-xs tracking-[0.3em] uppercase text-white/40 flex items-center gap-4">
             <span className="w-8 h-[1px] bg-white/20" />
