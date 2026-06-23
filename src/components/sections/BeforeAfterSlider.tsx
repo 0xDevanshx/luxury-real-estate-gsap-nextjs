@@ -23,15 +23,21 @@ export default function BeforeAfterSlider() {
   }, []);
 
   // Pointer event handlers
-  const handlePointerDown = useCallback((e: React.PointerEvent) => {
-    setIsDragging(true);
-    calculatePosition(e.clientX);
-  }, [calculatePosition]);
+  const handlePointerDown = useCallback(
+    (e: React.PointerEvent) => {
+      setIsDragging(true);
+      calculatePosition(e.clientX);
+    },
+    [calculatePosition],
+  );
 
-  const handlePointerMove = useCallback((e: React.PointerEvent) => {
-    if (!isDragging) return;
-    calculatePosition(e.clientX);
-  }, [isDragging, calculatePosition]);
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent) => {
+      if (!isDragging) return;
+      calculatePosition(e.clientX);
+    },
+    [isDragging, calculatePosition],
+  );
 
   const handlePointerUp = useCallback(() => {
     setIsDragging(false);
@@ -41,14 +47,16 @@ export default function BeforeAfterSlider() {
   useEffect(() => {
     if (!isDragging) return;
 
-    const handleGlobalMouseMove = (e: MouseEvent) => calculatePosition(e.clientX);
+    const handleGlobalMouseMove = (e: MouseEvent) =>
+      calculatePosition(e.clientX);
     const handleGlobalMouseUp = () => setIsDragging(false);
 
-    const handleTouchMove = (e: TouchEvent) => calculatePosition(e.touches[0].clientX);
+    const handleTouchMove = (e: TouchEvent) =>
+      calculatePosition(e.touches[0].clientX);
 
     window.addEventListener("mousemove", handleGlobalMouseMove);
     window.addEventListener("mouseup", handleGlobalMouseUp);
-    
+
     // Also handle touch globally if dragging started
     window.addEventListener("touchmove", handleTouchMove);
     window.addEventListener("touchend", handleGlobalMouseUp);
@@ -60,7 +68,6 @@ export default function BeforeAfterSlider() {
       window.removeEventListener("touchend", handleGlobalMouseUp);
     };
   }, [isDragging, calculatePosition]);
-
 
   // Keyboard accessibility
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -76,22 +83,24 @@ export default function BeforeAfterSlider() {
   return (
     <section className="relative w-full bg-[#0a0a0a] text-white py-24 md:py-32 z-10">
       <div className="max-w-[1200px] mx-auto px-6">
-        
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-light tracking-tight mb-4">Transforming Visions</h2>
-          <p className="text-white/60 tracking-widest uppercase text-sm">Drag to compare Before & After</p>
+          <h2 className="text-3xl md:text-5xl font-light tracking-tight mb-4">
+            Transforming Visions
+          </h2>
+          <p className="text-white/60 tracking-widest uppercase text-sm">
+            Drag to compare Before & After
+          </p>
         </div>
 
-        <div 
+        <div
           ref={containerRef}
           className="relative w-full aspect-video md:aspect-[21/9] rounded-xl overflow-hidden cursor-ew-resize select-none touch-none bg-zinc-900"
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
         >
-          {/* Before Image (Bottom) */}
           <div className="absolute inset-0">
-            <Image 
+            <Image
               src={BEFORE_IMAGE}
               alt="Unrenovated Space"
               fill
@@ -103,12 +112,13 @@ export default function BeforeAfterSlider() {
             </div>
           </div>
 
-          {/* After Image (Top, Clipped) */}
-          <div 
+          <div
             className="absolute inset-0 z-10"
-            style={{ clipPath: `polygon(0 0, ${position}% 0, ${position}% 100%, 0 100%)` }}
+            style={{
+              clipPath: `polygon(0 0, ${position}% 0, ${position}% 100%, 0 100%)`,
+            }}
           >
-            <Image 
+            <Image
               src={AFTER_IMAGE}
               alt="Renovated Luxury Space"
               fill
@@ -120,12 +130,10 @@ export default function BeforeAfterSlider() {
             </div>
           </div>
 
-          {/* Slider Handle Line */}
-          <div 
+          <div
             className="absolute top-0 bottom-0 w-[2px] bg-white z-20 pointer-events-none"
             style={{ left: `${position}%`, transform: "translateX(-50%)" }}
           >
-            {/* Slider Handle Button */}
             <button
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,0,0,0.5)] pointer-events-auto transition-transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-white/50"
               aria-label="Drag or use arrow keys to compare images"
@@ -143,9 +151,7 @@ export default function BeforeAfterSlider() {
               </div>
             </button>
           </div>
-          
         </div>
-
       </div>
     </section>
   );

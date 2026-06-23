@@ -14,7 +14,7 @@ const BioText = memo(() => {
     // Line-based SplitType changes on resize, causing words to jump between lines (CLS).
     // Word positions never change regardless of container width.
     const words = Array.from(
-      bioRef.current.querySelectorAll(".bio-word")
+      bioRef.current.querySelectorAll(".bio-word"),
     ) as HTMLElement[];
 
     gsap.set(words, { opacity: 0, y: 30 });
@@ -32,7 +32,7 @@ const BioText = memo(() => {
       tl.to(
         word,
         { opacity: 1, y: 0, ease: "power2.out", duration: 0.3 },
-        i * 0.05
+        i * 0.05,
       );
     });
 
@@ -40,7 +40,6 @@ const BioText = memo(() => {
       tl.kill();
     };
   }, []);
-
 
   const QUOTE = `"Real estate is not just about transactions; it's about curating a legacy. We established Luxe Estates to redefine the boundaries of modern luxury living. Every property in our portfolio represents the pinnacle of architectural excellence, absolute privacy, and uncompromising elegance. Our vision is simple: to connect the extraordinary with the exceptional."`;
 
@@ -50,9 +49,11 @@ const BioText = memo(() => {
       className="text-2xl md:text-3xl font-light leading-relaxed tracking-normal text-white/90 text-justify hyphens-auto italic"
       style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
     >
-      {/* Animate each word independently — word positions never change between screen sizes */}
       {QUOTE.split(" ").map((word, i) => (
-        <span key={i} className="bio-word inline-block mr-[0.25em] will-change-transform">
+        <span
+          key={i}
+          className="bio-word inline-block mr-[0.25em] will-change-transform"
+        >
           {word}
         </span>
       ))}
@@ -95,7 +96,7 @@ export default function FounderSpotlight() {
             scrub: true,
           },
         });
-      }
+      },
     );
 
     return () => mm.revert();
@@ -107,8 +108,6 @@ export default function FounderSpotlight() {
       className="relative w-full bg-black py-24 md:py-32 overflow-hidden"
     >
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-        {/* Left Side: Portrait */}
         <div className="relative w-full aspect-[3/4] max-h-[70vh] overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
           <Image
             ref={imageRef}
@@ -128,7 +127,6 @@ export default function FounderSpotlight() {
           </div>
         </div>
 
-        {/* Right Side: Bio */}
         <div className="flex flex-col justify-center gap-6">
           <h2 className="text-xs uppercase tracking-widest text-white/50 font-medium">
             The Vision
@@ -141,7 +139,6 @@ export default function FounderSpotlight() {
             </span>
           </div>
         </div>
-
       </div>
     </section>
   );

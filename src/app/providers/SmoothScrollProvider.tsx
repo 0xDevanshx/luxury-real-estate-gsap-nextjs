@@ -15,7 +15,7 @@ export default function SmoothScrollProvider({
   useEffect(() => {
     // Check for prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     ).matches;
 
     // Initialize Lenis

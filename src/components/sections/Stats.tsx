@@ -29,13 +29,14 @@ const STATS_DATA = [
   },
 ];
 
-const StatItem = memo(({ item }: { item: typeof STATS_DATA[0] }) => {
+const StatItem = memo(({ item }: { item: (typeof STATS_DATA)[0] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
   const labelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current || !counterRef.current || !labelRef.current) return;
+    if (!containerRef.current || !counterRef.current || !labelRef.current)
+      return;
 
     // Split the label text into characters
     const splitLabel = new SplitType(labelRef.current, { types: "chars" });
@@ -46,11 +47,12 @@ const StatItem = memo(({ item }: { item: typeof STATS_DATA[0] }) => {
     ctx.add("(prefers-reduced-motion: no-preference)", () => {
       // 1. Text Character Reveal Animation (Scrubbed)
       if (chars) {
-        gsap.fromTo(chars, 
-          { opacity: 0, y: 20 }, 
-          { 
-            opacity: 1, 
-            y: 0, 
+        gsap.fromTo(
+          chars,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
             stagger: 0.05,
             ease: "none",
             scrollTrigger: {
@@ -58,8 +60,8 @@ const StatItem = memo(({ item }: { item: typeof STATS_DATA[0] }) => {
               start: "top 85%",
               end: "top 50%",
               scrub: 1, // Ensures precise reverse on scroll-up
-            }
-          }
+            },
+          },
         );
       }
 
@@ -78,9 +80,11 @@ const StatItem = memo(({ item }: { item: typeof STATS_DATA[0] }) => {
         onUpdate: () => {
           if (counterRef.current) {
             // Update the DOM element directly for maximum performance during scroll
-            counterRef.current.innerText = Math.round(counterObj.val).toString();
+            counterRef.current.innerText = Math.round(
+              counterObj.val,
+            ).toString();
           }
-        }
+        },
       });
     });
 
@@ -91,13 +95,19 @@ const StatItem = memo(({ item }: { item: typeof STATS_DATA[0] }) => {
   }, [item.target]);
 
   return (
-    <div ref={containerRef} className="flex flex-col items-center justify-center text-center">
+    <div
+      ref={containerRef}
+      className="flex flex-col items-center justify-center text-center"
+    >
       <div className="flex items-center text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4 text-white">
         {item.prefix && <span>{item.prefix}</span>}
         <span ref={counterRef}>0</span>
         {item.suffix && <span>{item.suffix}</span>}
       </div>
-      <div ref={labelRef} className="text-xl md:text-3xl font-light tracking-widest uppercase text-white/70 overflow-hidden">
+      <div
+        ref={labelRef}
+        className="text-xl md:text-3xl font-light tracking-widest uppercase text-white/70 overflow-hidden"
+      >
         {item.label}
       </div>
     </div>
@@ -109,8 +119,8 @@ export default function Stats() {
   const sectionRef = useRef<HTMLElement>(null);
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       className="relative w-full py-32 md:py-48 bg-[#0a0a0a] overflow-hidden"
     >
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-24 md:gap-12 relative z-10">
@@ -118,13 +128,10 @@ export default function Stats() {
           <StatItem key={item.id} item={item} />
         ))}
       </div>
-      
-      {/* Premium Architectural Grid Background */}
+
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* The fine line grid */}
         <div className="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_10%,transparent_100%)]" />
-        
-        {/* Soft center glow to highlight the numbers */}
+
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[50vh] bg-white/[0.03] blur-[100px] rounded-full" />
       </div>
     </section>

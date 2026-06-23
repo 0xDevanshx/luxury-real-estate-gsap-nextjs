@@ -8,7 +8,10 @@ interface MagneticButtonProps {
   className?: string;
 }
 
-export default function MagneticButton({ children, className = "" }: MagneticButtonProps) {
+export default function MagneticButton({
+  children,
+  className = "",
+}: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const x = useSpring(0, { stiffness: 150, damping: 20 });

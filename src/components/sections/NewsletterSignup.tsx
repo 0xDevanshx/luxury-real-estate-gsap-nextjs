@@ -7,7 +7,10 @@ import * as z from "zod";
 import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 
 const schema = z.object({
-  email: z.string().min(1, { message: "Email is required" }).email({ message: "Invalid email address" }),
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Invalid email address" }),
   consent: z.boolean().refine((val) => val === true, {
     message: "You must agree to the privacy policy.",
   }),
@@ -32,21 +35,23 @@ export default function NewsletterSignup() {
 
   const onSubmit = async (data: NewsletterFormData) => {
     setIsSubmitting(true);
-    
+
     // Simulate network request
     await new Promise((resolve) => setTimeout(resolve, 1500));
-    
+
     console.log("Form submitted successfully:", data);
     // TODO: wire up real API endpoint here
-    
+
     setIsSubmitting(false);
     setIsSuccess(true);
   };
 
   return (
-    <section id="contact" className="relative w-full bg-[#111] text-white py-24 md:py-32 z-10 border-t border-white/5">
+    <section
+      id="contact"
+      className="relative w-full bg-[#111] text-white py-24 md:py-32 z-10 border-t border-white/5"
+    >
       <div className="max-w-screen-md mx-auto px-6 text-center">
-        
         <div className="mb-12">
           <span className="text-sm font-bold tracking-widest uppercase text-white/50 mb-6 block">
             Market Intelligence
@@ -55,23 +60,27 @@ export default function NewsletterSignup() {
             Stay ahead of the curve.
           </h2>
           <p className="text-lg text-white/60 font-light max-w-lg mx-auto">
-            Subscribe to our weekly brief for exclusive off-market listings, macroeconomic analysis, and global real estate trends.
+            Subscribe to our weekly brief for exclusive off-market listings,
+            macroeconomic analysis, and global real estate trends.
           </p>
         </div>
 
         <div className="relative min-h-[200px] flex items-center justify-center">
-          
           {isSuccess ? (
             <div className="flex flex-col items-center justify-center animate-in fade-in zoom-in duration-500">
               <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-6">
                 <CheckCircle size={32} className="text-green-400" />
               </div>
-              <h3 className="text-2xl font-light mb-2">Welcome to the Inner Circle</h3>
-              <p className="text-white/60">Your first market report will arrive shortly.</p>
+              <h3 className="text-2xl font-light mb-2">
+                Welcome to the Inner Circle
+              </h3>
+              <p className="text-white/60">
+                Your first market report will arrive shortly.
+              </p>
             </div>
           ) : (
-            <form 
-              onSubmit={handleSubmit(onSubmit)} 
+            <form
+              onSubmit={handleSubmit(onSubmit)}
               className="w-full max-w-md mx-auto text-left animate-in fade-in duration-500"
             >
               <div className="relative">
@@ -85,7 +94,7 @@ export default function NewsletterSignup() {
                   {...register("email")}
                   disabled={isSubmitting || isSuccess}
                 />
-                
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -99,12 +108,19 @@ export default function NewsletterSignup() {
                     <ArrowRight size={24} />
                   )}
                 </button>
-                
+
                 {errors.email && (
-                  <p id="email-error" className="absolute -bottom-8 left-0 text-amber-500/90 text-sm mt-2">{errors.email.message}</p>
+                  <p
+                    id="email-error"
+                    className="absolute -bottom-8 left-0 text-amber-500/90 text-sm mt-2"
+                  >
+                    {errors.email.message}
+                  </p>
                 )}
                 {errors.consent && (
-                  <p className="absolute -bottom-14 left-0 text-amber-500/90 text-sm mt-2">{errors.consent.message}</p>
+                  <p className="absolute -bottom-14 left-0 text-amber-500/90 text-sm mt-2">
+                    {errors.consent.message}
+                  </p>
                 )}
               </div>
 
@@ -121,14 +137,24 @@ export default function NewsletterSignup() {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <label htmlFor="consent" className="text-sm text-white/60 cursor-pointer hover:text-white/80 transition-colors">
-                    I consent to receiving marketing communications and agree to the <a href="#" className="underline hover:text-white transition-colors">Privacy Policy</a>.
+                  <label
+                    htmlFor="consent"
+                    className="text-sm text-white/60 cursor-pointer hover:text-white/80 transition-colors"
+                  >
+                    I consent to receiving marketing communications and agree to
+                    the{" "}
+                    <a
+                      href="#"
+                      className="underline hover:text-white transition-colors"
+                    >
+                      Privacy Policy
+                    </a>
+                    .
                   </label>
                 </div>
               </div>
             </form>
           )}
-
         </div>
       </div>
     </section>

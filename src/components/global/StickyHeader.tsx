@@ -37,40 +37,59 @@ export default function StickyHeader() {
         WebkitBackdropFilter: "blur(0px)", // for Safari support
       }}
     >
-      {/* Logo */}
       <MagneticButton>
-        <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tight" data-cursor="pointer">
+        <Link
+          href="/"
+          className="flex items-center gap-2 font-bold text-xl tracking-tight"
+          data-cursor="pointer"
+        >
           <Building2 size={24} />
-          <span>LUXE<span className="font-light">ESTATES</span></span>
+          <span>
+            LUXE<span className="font-light">ESTATES</span>
+          </span>
         </Link>
       </MagneticButton>
 
-      {/* Desktop Nav */}
       <nav className="hidden md:flex items-center gap-8 font-medium">
         <MagneticButton>
-          <Link href="#properties" className="flex items-center gap-2 hover:text-zinc-300 transition-colors" data-cursor="pointer">
+          <Link
+            href="#properties"
+            className="flex items-center gap-2 hover:text-zinc-300 transition-colors"
+            data-cursor="pointer"
+          >
             <Home size={18} />
             <span>Properties</span>
           </Link>
         </MagneticButton>
         <MagneticButton>
-          <Link href="#search" className="flex items-center gap-2 hover:text-zinc-300 transition-colors" data-cursor="pointer">
+          <Link
+            href="#search"
+            className="flex items-center gap-2 hover:text-zinc-300 transition-colors"
+            data-cursor="pointer"
+          >
             <Search size={18} />
             <span>Search</span>
           </Link>
         </MagneticButton>
         <MagneticButton>
-          <Link href="#contact" className="flex items-center gap-2 hover:text-zinc-300 transition-colors" data-cursor="pointer">
+          <Link
+            href="#contact"
+            className="flex items-center gap-2 hover:text-zinc-300 transition-colors"
+            data-cursor="pointer"
+          >
             <Phone size={18} />
             <span>Contact</span>
           </Link>
         </MagneticButton>
       </nav>
 
-      {/* Mobile Hamburger */}
       <div className="md:hidden flex items-center">
         <MagneticButton>
-          <button className="p-2 rounded-full border border-white/20 hover:bg-white/10 transition-colors" data-cursor="pointer" aria-label="Menu">
+          <button
+            className="p-2 rounded-full border border-white/20 hover:bg-white/10 transition-colors"
+            data-cursor="pointer"
+            aria-label="Menu"
+          >
             <Menu size={24} />
           </button>
         </MagneticButton>

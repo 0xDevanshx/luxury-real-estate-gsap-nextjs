@@ -2,13 +2,23 @@
 
 import { useEffect, useRef, useState, memo } from "react";
 import gsap from "gsap";
-import { Circle, CircleDot, Play, Pause, ChevronDown, Compass, MapPin, Key, Shield } from "lucide-react";
+import {
+  Circle,
+  CircleDot,
+  Play,
+  Pause,
+  ChevronDown,
+  Compass,
+  MapPin,
+  Key,
+  Shield,
+} from "lucide-react";
 import MagneticButton from "../global/MagneticButton";
 
 import Image from "next/image";
 import { FEATURED_LISTINGS } from "@/data/mockData";
 
-const HERO_BACKGROUNDS = FEATURED_LISTINGS.map(l => l.image);
+const HERO_BACKGROUNDS = FEATURED_LISTINGS.map((l) => l.image);
 
 // Extracted KineticHeadline to prevent React re-renders from destroying SplitType DOM nodes
 const KineticHeadline = memo(() => {
@@ -60,7 +70,6 @@ const KineticHeadline = memo(() => {
         // Fixed font size — never changes, never causes reflow
         className="text-[clamp(4rem,10vw,10rem)] font-bold tracking-tighter uppercase leading-none pb-4 text-center"
       >
-        {/* Manual word spans so we can animate them individually without SplitType */}
         {["Redefining", "Luxury", "Living"].map((word, i) => (
           <span key={i} className="word inline-block mr-[0.2em] last:mr-0">
             {word}
@@ -90,7 +99,9 @@ export default function Hero() {
 
   // Indicator bobbing — transform only, no layout impact
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     const ctx = gsap.context(() => {
       if (!prefersReducedMotion && indicatorRef.current) {
@@ -99,7 +110,7 @@ export default function Hero() {
           duration: 1.2,
           yoyo: true,
           repeat: -1,
-          ease: "sine.inOut"
+          ease: "sine.inOut",
         });
       }
     }, containerRef);
@@ -112,8 +123,6 @@ export default function Hero() {
       className="relative w-full h-[150vh] flex flex-col justify-start overflow-hidden bg-black text-white"
     >
       <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center px-6 lg:px-12 overflow-hidden">
-
-        {/* Background Images with Ken Burns Effect */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40">
           {HERO_BACKGROUNDS.map((bg, idx) => (
             <div
@@ -134,7 +143,6 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* Playback Controls */}
         <div className="absolute bottom-12 right-6 lg:right-12 z-20 flex items-center gap-4">
           <MagneticButton>
             <button
@@ -155,16 +163,18 @@ export default function Hero() {
                   aria-label={`Show slide ${idx + 1}`}
                   data-cursor="pointer"
                 >
-                  {activeIndex === idx ? <CircleDot size={16} /> : <Circle size={16} />}
+                  {activeIndex === idx ? (
+                    <CircleDot size={16} />
+                  ) : (
+                    <Circle size={16} />
+                  )}
                 </button>
               </MagneticButton>
             ))}
           </div>
         </div>
 
-        {/* Hero Content — constrained max-width prevents layout changes on large screens */}
         <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center pointer-events-none">
-
           <KineticHeadline />
 
           <div className="mt-8 flex flex-col items-center gap-12 opacity-100">
@@ -176,7 +186,10 @@ export default function Hero() {
                 { icon: Shield, label: "Private" },
               ].map(({ icon: Icon, label }, i) => (
                 <MagneticButton key={i}>
-                  <button className="flex items-center gap-2 text-sm font-medium tracking-wide uppercase hover:text-white/70 transition-colors" data-cursor="pointer">
+                  <button
+                    className="flex items-center gap-2 text-sm font-medium tracking-wide uppercase hover:text-white/70 transition-colors"
+                    data-cursor="pointer"
+                  >
                     <Icon size={18} />
                     <span>{label}</span>
                   </button>
@@ -186,9 +199,10 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Scroll Down Indicator */}
         <div className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-70">
-          <span className="text-[10px] uppercase tracking-widest font-medium">Scroll to Discover</span>
+          <span className="text-[10px] uppercase tracking-widest font-medium">
+            Scroll to Discover
+          </span>
           <div ref={indicatorRef} className="will-change-transform">
             <ChevronDown size={22} />
           </div>

@@ -13,7 +13,9 @@ export default function CustomCursor() {
 
   useEffect(() => {
     // Media query to check for touch devices, where custom cursor is not needed
-    const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    const isTouchDevice = window.matchMedia(
+      "(hover: none) and (pointer: coarse)",
+    ).matches;
     if (isTouchDevice) return;
 
     const moveCursor = (e: MouseEvent) => {

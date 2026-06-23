@@ -23,14 +23,15 @@ export default function BackToTop() {
     return () => ctx.revert();
   }, []);
 
-
-
   const handleClick = () => {
     const w = window as unknown as {
       lenis?: { scrollTo: (target: number, options?: unknown) => void };
     };
     if (w.lenis) {
-      w.lenis.scrollTo(0, { duration: 1.5, easing: (t: number) => 1 - Math.pow(1 - t, 4) });
+      w.lenis.scrollTo(0, {
+        duration: 1.5,
+        easing: (t: number) => 1 - Math.pow(1 - t, 4),
+      });
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -39,7 +40,9 @@ export default function BackToTop() {
   return (
     <div
       className={`fixed bottom-8 right-8 z-50 transition-opacity duration-500 ${
-        isVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        isVisible
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
       }`}
     >
       <MagneticButton>
