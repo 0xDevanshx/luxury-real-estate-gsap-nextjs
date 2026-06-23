@@ -32,7 +32,9 @@ export default function FeaturedListings() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: () => `+=${Math.abs(getScrollAmount())}`,
+          // Multiply scroll amount by 2 so the vertical scroll required is twice as long,
+          // making the horizontal scrub slower and smoother for 6 cards.
+          end: () => `+=${Math.abs(getScrollAmount()) * 2}`,
           pin: true,
           scrub: 1,
           invalidateOnRefresh: true,
@@ -71,7 +73,9 @@ export default function FeaturedListings() {
       <div className="w-full h-full max-w-[1440px] mx-auto relative flex items-center overflow-visible">
         <div 
           ref={scrollContainerRef} 
-          className="flex h-max w-max px-[10vw] lg:px-[350px] items-center will-change-transform touch-pan-y"
+          // Changed from px-[350px] to pl-[350px] and a smaller pr-[50px].
+          // Massive right padding was causing the scroll to "end" while the last cards were still in the middle of the screen!
+          className="flex h-max w-max pl-[10vw] pr-6 lg:pl-[350px] lg:pr-[50px] items-center will-change-transform touch-pan-y"
         >
           {LISTINGS.map((property, idx) => (
             <div 
