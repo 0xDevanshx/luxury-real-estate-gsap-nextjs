@@ -42,9 +42,8 @@ export default function FeaturedListings() {
                     alt={property.title}
                     fill
                     sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 500px"
-                    className="object-cover transition-all duration-250 ease-out will-change-transform group-hover:scale-[1.03] group-hover:brightness-[1.08]"
+                    className="object-cover transition-all duration-250 ease-out group-hover:scale-[1.03] group-hover:brightness-[1.08] hover:will-change-transform"
                     priority={idx < 2}
-                    unoptimized={true}
                   />
                 </div>
 

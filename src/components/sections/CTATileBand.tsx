@@ -50,7 +50,6 @@ const ImageTile = ({
           fill
           sizes="(max-width: 768px) 50vw, 25vw"
           priority={priority}
-          unoptimized={true}
           className="object-cover transition-transform duration-300 group-hover/image:scale-[1.05]"
         />
       </div>

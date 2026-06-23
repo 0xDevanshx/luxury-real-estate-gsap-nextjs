@@ -61,6 +61,8 @@ function CurvedImage({ imageUrl }: { imageUrl: string }) {
         blur={2.5}
         far={4}
         color="#000000"
+        frames={1}
+        resolution={256}
       />
     </group>
   );
