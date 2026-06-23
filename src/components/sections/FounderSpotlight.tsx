@@ -12,76 +12,57 @@ const BioText = memo(() => {
   useEffect(() => {
     if (!bioRef.current) return;
 
-    // Use SplitType to split the text into lines
-    const split = new SplitType(bioRef.current, { types: 'lines', lineClass: 'overflow-hidden' });
-    
-    // We need to wrap each line in an inner div to animate the transform while keeping the outer line as an overflow hidden mask
+    // Split into lines and wrap each in an inner div for overflow-mask animation
+    const split = new SplitType(bioRef.current, {
+      types: "lines",
+      lineClass: "overflow-hidden block",
+    });
+
     const lines = split.lines;
     if (lines) {
-      lines.forEach(line => {
+      lines.forEach((line) => {
         const content = line.innerHTML;
-        line.innerHTML = `<div class="line-inner">${content}</div>`;
+        line.innerHTML = `<div class="line-inner" style="display:block">${content}</div>`;
       });
     }
 
-    const mm = gsap.matchMedia();
-    const section = bioRef.current.closest('section');
+    const inners = bioRef.current.querySelectorAll(".line-inner");
 
-    mm.add("(min-width: 768px)", () => {
-      // Desktop: Pin and scrub
-      if (!section) return;
-      
-      const inners = bioRef.current!.querySelectorAll('.line-inner');
-      
-      gsap.fromTo(inners, 
-        { y: "100%", opacity: 0 },
-        {
-          y: "0%",
-          opacity: 1,
-          stagger: 0.1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: "+=100vh",
-            scrub: 1,
-          }
-        }
-      );
-    });
+    // Set initial state
+    gsap.set(inners, { y: "105%", opacity: 0 });
 
-    mm.add("(max-width: 767px)", () => {
-      // Mobile: Normal scroll without pin
-      const inners = bioRef.current!.querySelectorAll('.line-inner');
-      
-      gsap.fromTo(inners,
-        { y: "100%", opacity: 0 },
-        {
-          y: "0%",
-          opacity: 1,
-          stagger: 0.1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: bioRef.current,
-            start: "top 80%",
-          }
-        }
-      );
+    // Trigger: fire as soon as the bio text enters the viewport (top of bio hits 85% of viewport)
+    // NOT scrubbed — just a smooth, fast play-forward animation
+    gsap.to(inners, {
+      y: "0%",
+      opacity: 1,
+      stagger: 0.07,
+      duration: 0.9,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: bioRef.current,
+        start: "top 85%", // fires early — as soon as text container enters view
+        toggleActions: "play none none none",
+      },
     });
 
     return () => {
       split.revert();
-      mm.revert();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
   return (
-    <div 
-      ref={bioRef} 
-      className="text-2xl md:text-4xl lg:text-5xl font-light leading-tight tracking-tight text-white/90"
+    <div
+      ref={bioRef}
+      className="text-lg md:text-xl lg:text-2xl font-light leading-relaxed tracking-tight text-white/85"
     >
-      &quot;Real estate is not just about transactions; it&apos;s about curating a legacy. We established Luxe Estates to redefine the boundaries of modern luxury living. Every property in our portfolio represents the pinnacle of architectural excellence, absolute privacy, and uncompromising elegance. Our vision is simple: to connect the extraordinary with the exceptional.&quot;
+      &quot;Real estate is not just about transactions; it&apos;s about curating
+      a legacy. We established Luxe Estates to redefine the boundaries of modern
+      luxury living. Every property in our portfolio represents the pinnacle of
+      architectural excellence, absolute privacy, and uncompromising elegance.
+      Our vision is simple: to connect the extraordinary with the
+      exceptional.&quot;
     </div>
   );
 });
@@ -94,58 +75,48 @@ export default function FounderSpotlight() {
   useEffect(() => {
     const mm = gsap.matchMedia(containerRef);
 
-    mm.add({
-      isDesktop: "(min-width: 768px)",
-      isMobile: "(max-width: 767px)",
-      reduceMotion: "(prefers-reduced-motion: reduce)"
-    }, (context) => {
-      const { isDesktop, reduceMotion } = context.conditions as { isDesktop: boolean, isMobile: boolean, reduceMotion: boolean };
-      
-      if (reduceMotion) return;
+    mm.add(
+      {
+        isDesktop: "(min-width: 768px)",
+        isMobile: "(max-width: 767px)",
+        reduceMotion: "(prefers-reduced-motion: reduce)",
+      },
+      (context) => {
+        const { reduceMotion } = context.conditions as {
+          isDesktop: boolean;
+          isMobile: boolean;
+          reduceMotion: boolean;
+        };
 
-      if (isDesktop) {
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=100vh",
-          pin: true,
-          pinSpacing: true,
-        });
+        if (reduceMotion) return;
 
+        // Subtle parallax on the image only — no pinning so content is always reachable
         gsap.to(imageRef.current, {
-          scale: 1.15,
-          y: "10%",
+          scale: 1.08,
+          y: "8%",
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top bottom",
             end: "bottom top",
             scrub: true,
-          }
-        });
-      } else {
-        gsap.to(imageRef.current, {
-          scale: 1.05,
-          ease: "none",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          }
+          },
         });
       }
-    });
+    );
 
     return () => mm.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full bg-black py-24 md:py-0 md:h-screen flex items-center overflow-hidden">
-      <div className="w-full max-w-screen-2xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-center">
-        
+    <section
+      ref={containerRef}
+      className="relative w-full bg-black py-24 md:py-32 overflow-hidden"
+    >
+      <div className="w-full max-w-screen-xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+
         {/* Left Side: Portrait */}
-        <div className="relative w-full aspect-[3/4] md:h-[80vh] overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
+        <div className="relative w-full aspect-[3/4] max-h-[70vh] overflow-hidden rounded-xl border border-white/10 flex-shrink-0">
           <Image
             ref={imageRef}
             src="https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=1200"
@@ -155,15 +126,27 @@ export default function FounderSpotlight() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
           <div className="absolute bottom-6 left-6 text-white">
-            <h3 className="text-xl font-bold uppercase tracking-widest">Alexander Pierce</h3>
-            <p className="text-sm text-white/60 uppercase tracking-widest mt-1">Founder & CEO</p>
+            <h3 className="text-lg font-bold uppercase tracking-widest">
+              Alexander Pierce
+            </h3>
+            <p className="text-xs text-white/60 uppercase tracking-widest mt-1">
+              Founder &amp; CEO
+            </p>
           </div>
         </div>
 
         {/* Right Side: Bio */}
-        <div className="flex flex-col justify-center">
-          <h2 className="text-sm uppercase tracking-widest text-white/60 mb-8">The Vision</h2>
+        <div className="flex flex-col justify-center gap-6">
+          <h2 className="text-xs uppercase tracking-widest text-white/50 font-medium">
+            The Vision
+          </h2>
           <BioText />
+          <div className="flex items-center gap-3 mt-4">
+            <div className="w-8 h-px bg-white/30" />
+            <span className="text-xs uppercase tracking-widest text-white/40">
+              Alexander Pierce, Founder
+            </span>
+          </div>
         </div>
 
       </div>

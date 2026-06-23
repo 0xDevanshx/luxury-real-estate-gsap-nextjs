@@ -5,7 +5,7 @@ import gsap from "gsap";
 import SplitType from "split-type";
 import { Circle, CircleDot, Play, Pause, ChevronDown, Compass, MapPin, Key, Shield } from "lucide-react";
 import MagneticButton from "../global/MagneticButton";
-import dynamic from "next/dynamic";
+
 import Image from "next/image";
 import { FEATURED_LISTINGS } from "@/data/mockData";
 
