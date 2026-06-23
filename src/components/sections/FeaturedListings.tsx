@@ -72,11 +72,7 @@ export default function FeaturedListings() {
           </p>
         </div>
 
-        <div className="md:hidden absolute bottom-8 left-0 right-0 z-20 text-white/50 text-xs uppercase tracking-widest flex items-center justify-center gap-2">
-          <ArrowRight size={12} className="rotate-180" />
-          <span>Swipe to explore</span>
-          <ArrowRight size={12} />
-        </div>
+
 
         <div className="w-full h-full max-w-[1440px] mx-auto relative flex items-center overflow-visible">
           <div
