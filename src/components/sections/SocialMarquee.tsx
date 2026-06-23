@@ -9,7 +9,7 @@ const MarqueeText = memo(({ text, direction }: { text: string; direction: "left"
   
   return (
     <div 
-      className={`flex whitespace-nowrap will-change-transform group-hover:[animation-play-state:paused] ${
+      className={`flex whitespace-nowrap will-change-transform ${
         direction === "left" ? "animate-marquee-left" : "animate-marquee-right"
       }`}
     >
