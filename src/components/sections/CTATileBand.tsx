@@ -21,7 +21,7 @@ const TILES = [
   { id: 8, type: "image", bgUrl: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c" },
 ];
 
-const ImageTile = ({ tile }: { tile: { id: number; type: string; bgUrl?: string; content?: string } }) => {
+const ImageTile = ({ tile, priority = false }: { tile: { id: number; type: string; bgUrl?: string; content?: string }, priority?: boolean }) => {
   const tileRef = useRef<HTMLDivElement>(null);
   
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -66,6 +66,7 @@ const ImageTile = ({ tile }: { tile: { id: number; type: string; bgUrl?: string;
           alt="Premium Real Estate" 
           fill 
           sizes="(max-width: 768px) 50vw, 25vw" 
+          priority={priority}
           // Removed opacity-60 and added premium CSS filters for a luxury feel
           className="object-cover transform-gpu transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/image:scale-[1.05] group-hover/image:brightness-110 group-hover/image:contrast-[1.05] group-hover/image:saturate-[1.05] will-change-[transform,filter]" 
         />
@@ -113,7 +114,7 @@ export default function CTATileBand() {
       <div className="max-w-[1200px] mx-auto px-6">
         
         <div className="grid grid-cols-2 md:grid-cols-4 border-t border-l border-white/10">
-          {TILES.map((tile) => (
+          {TILES.map((tile, idx) => (
             <div 
               key={tile.id} 
               className={`cta-tile relative aspect-square border-r border-b border-white/10 flex flex-col justify-between p-6 transition-all duration-500 hover:z-20 ${tile.type === 'cta' ? 'col-span-2 md:col-span-2 row-span-2 md:row-span-1 aspect-auto md:aspect-[2/1] bg-white/5' : ''}`}
@@ -123,12 +124,12 @@ export default function CTATileBand() {
               )}
               
               {tile.type === "image" && (
-                <ImageTile tile={tile} />
+                <ImageTile tile={tile} priority={idx < 4} />
               )}
               
               {tile.type === "text" && (
                 <>
-                  {tile.bgUrl && <ImageTile tile={tile} />}
+                  {tile.bgUrl && <ImageTile tile={tile} priority={idx < 4} />}
                   <div className="relative z-20 w-2 h-2 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
                   <p className="relative z-20 text-sm md:text-base font-bold tracking-widest uppercase text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
                     {tile.content}
