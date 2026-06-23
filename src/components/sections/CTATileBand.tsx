@@ -67,6 +67,7 @@ const ImageTile = ({ tile, priority = false }: { tile: { id: number; type: strin
           fill 
           sizes="(max-width: 768px) 50vw, 25vw" 
           priority={priority}
+          unoptimized={true}
           // Removed opacity-60 and added premium CSS filters for a luxury feel
           className="object-cover transform-gpu transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover/image:scale-[1.05] group-hover/image:brightness-110 group-hover/image:contrast-[1.05] group-hover/image:saturate-[1.05] will-change-[transform,filter]" 
         />
