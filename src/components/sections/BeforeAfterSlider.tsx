@@ -4,8 +4,8 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const BEFORE_IMAGE = "https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?q=80&w=2000"; // Less polished room
-const AFTER_IMAGE = "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2000"; // Luxury modern living room
+const BEFORE_IMAGE = "/before.png";
+const AFTER_IMAGE = "/after.png";
 
 export default function BeforeAfterSlider() {
   const [position, setPosition] = useState(50); // Percentage 0-100
