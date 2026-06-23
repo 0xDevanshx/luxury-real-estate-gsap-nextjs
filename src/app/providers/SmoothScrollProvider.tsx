@@ -13,6 +13,12 @@ export default function SmoothScrollProvider({
   children: ReactNode;
 }) {
   useEffect(() => {
+    // Force scroll to top on reload
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+
     // Check for prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
