@@ -53,7 +53,7 @@ export default function StickyHeader() {
       <nav className="hidden md:flex items-center gap-8 font-medium">
         <MagneticButton>
           <Link
-            href="#properties"
+            href="/properties"
             className="flex items-center gap-2 hover:text-zinc-300 transition-colors"
             data-cursor="pointer"
           >
@@ -63,7 +63,7 @@ export default function StickyHeader() {
         </MagneticButton>
         <MagneticButton>
           <Link
-            href="#search"
+            href="/search"
             className="flex items-center gap-2 hover:text-zinc-300 transition-colors"
             data-cursor="pointer"
           >
@@ -73,7 +73,7 @@ export default function StickyHeader() {
         </MagneticButton>
         <MagneticButton>
           <Link
-            href="#contact"
+            href="/contact"
             className="flex items-center gap-2 hover:text-zinc-300 transition-colors"
             data-cursor="pointer"
           >

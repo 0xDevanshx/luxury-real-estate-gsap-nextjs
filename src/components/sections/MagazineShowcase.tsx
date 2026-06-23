@@ -59,7 +59,7 @@ export default function MagazineShowcase() {
           </div>
           <div>
             <Link
-              href="#contact"
+              href="/contact"
               className="px-8 py-4 bg-white text-black font-medium text-sm tracking-widest uppercase hover:bg-white/90 transition-colors rounded-full inline-block"
             >
               Subscribe to Print

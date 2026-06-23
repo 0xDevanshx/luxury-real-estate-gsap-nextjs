@@ -162,7 +162,7 @@ export default function CTATileBand() {
                   </h3>
                   <MagneticButton>
                     <Link
-                      href="#contact"
+                      href="/contact"
                       className="flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-sm font-bold uppercase tracking-widest transition-transform duration-300 hover:scale-105"
                     >
                       <span>Start Your Journey</span>
