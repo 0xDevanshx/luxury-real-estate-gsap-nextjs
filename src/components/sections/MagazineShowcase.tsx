@@ -46,7 +46,7 @@ export default function MagazineShowcase() {
 
   return (
     <section className="relative w-full bg-[#0a0a0a] text-white py-32 md:py-48 z-10 overflow-hidden">
-      <div className="max-w-screen-xl mx-auto px-6 relative">
+      <div className="max-w-[1200px] mx-auto px-6 relative">
         
         <div className="flex flex-col md:flex-row items-center justify-between mb-24 gap-8 text-center md:text-left">
           <div className="max-w-xl">

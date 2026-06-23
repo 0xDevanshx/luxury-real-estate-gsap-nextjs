@@ -32,7 +32,7 @@ const TESTIMONIALS = [
 export default function Testimonials() {
   return (
     <section className="relative w-full bg-[#111111] text-white py-32 md:py-48 z-10 border-t border-white/5">
-      <div className="max-w-screen-xl mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-6">
         
         <div className="text-center mb-16">
           <h2 className="text-sm uppercase tracking-widest text-white/50 mb-4">Client Perspectives</h2>

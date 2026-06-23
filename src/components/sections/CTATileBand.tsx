@@ -56,7 +56,7 @@ export default function CTATileBand() {
 
   return (
     <section ref={sectionRef} className="relative w-full bg-[#111111] text-white py-24 z-10" style={{ perspective: "1000px" }}>
-      <div className="max-w-screen-2xl mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-6">
         
         <div className="grid grid-cols-2 md:grid-cols-4 border-t border-l border-white/10">
           {TILES.map((tile) => (

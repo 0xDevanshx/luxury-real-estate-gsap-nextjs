@@ -14,29 +14,26 @@ export default function Philanthropy() {
   useEffect(() => {
     if (!containerRef.current || !textRef.current) return;
 
-    const splitText = new SplitType(textRef.current, { types: "lines" });
+    // Use words instead of lines to avoid reflow/resize issues
+    const splitText = new SplitType(textRef.current, { types: "words", wordClass: "will-change-transform inline-block" });
 
     const ctx = gsap.matchMedia(containerRef);
     ctx.add("(prefers-reduced-motion: no-preference)", () => {
-      // Wrap lines for clipping
-      splitText.lines?.forEach((line) => {
-        const wrapper = document.createElement("div");
-        wrapper.style.overflow = "hidden";
-        line.parentNode?.insertBefore(wrapper, line);
-        wrapper.appendChild(line);
-      });
-
-      // Animate text lines
-      gsap.from(splitText.lines, {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 70%",
-        },
-        y: "100%",
-        duration: 1,
-        stagger: 0.1,
-        ease: "power4.out"
-      });
+      // Animate text words instead of lines
+      gsap.fromTo(splitText.words, 
+        { y: 30, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 70%",
+          },
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.02,
+          ease: "power3.out"
+        }
+      );
     });
 
     return () => {
@@ -71,7 +68,7 @@ export default function Philanthropy() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/80" />
       </div>
 
-      <div className="relative z-10 max-w-screen-xl mx-auto px-6 text-center flex flex-col items-center">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-6 text-center flex flex-col items-center">
         
         <span className="text-sm font-bold tracking-widest uppercase text-white/50 mb-6 block">
           Luxe Estates Foundation
@@ -82,9 +79,11 @@ export default function Philanthropy() {
           beyond borders.
         </h2>
         
-        <p ref={textRef} className="text-lg md:text-xl text-white/90 font-light max-w-2xl mx-auto mb-16 leading-relaxed">
-          We believe true luxury is leaving the world better than we found it. A portion of every transaction funds sustainable housing initiatives in developing nations, creating lasting legacies of shelter and hope.
-        </p>
+        <div className="max-w-2xl mx-auto w-full mb-16">
+          <p ref={textRef} className="text-lg md:text-xl text-white/90 font-light leading-relaxed">
+            We believe true luxury is leaving the world better than we found it. A portion of every transaction funds sustainable housing initiatives in developing nations, creating lasting legacies of shelter and hope.
+          </p>
+        </div>
 
         <button 
           onClick={() => setIsVideoOpen(true)}

@@ -3,7 +3,6 @@
 import { useEffect, useRef, memo } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import SplitType from "split-type";
 
 const BioText = memo(() => {
   const bioRef = useRef<HTMLDivElement>(null);
@@ -11,65 +10,52 @@ const BioText = memo(() => {
   useEffect(() => {
     if (!bioRef.current) return;
 
-    // Split into lines and wrap each in an inner div for overflow-mask animation
-    const split = new SplitType(bioRef.current, {
-      types: "lines",
-      lineClass: "overflow-hidden block",
-    });
+    // IMPORTANT: We animate individual words (not lines).
+    // Line-based SplitType changes on resize, causing words to jump between lines (CLS).
+    // Word positions never change regardless of container width.
+    const words = Array.from(
+      bioRef.current.querySelectorAll(".bio-word")
+    ) as HTMLElement[];
 
-    const lines = split.lines;
-    if (lines) {
-      lines.forEach((line) => {
-        const content = line.innerHTML;
-        line.innerHTML = `<div class="line-inner" style="display:block">${content}</div>`;
-      });
-    }
+    gsap.set(words, { opacity: 0, y: 30 });
 
-    const inners = Array.from(bioRef.current.querySelectorAll(".line-inner"));
-
-    // Start all lines hidden
-    gsap.set(inners, { y: "105%", opacity: 0 });
-
-    // Build a timeline where each line reveals one after the other
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: bioRef.current,
-        // Start as soon as the text block enters the bottom of the screen
         start: "top bottom",
-        // End when the bottom of the text block reaches the center of the screen
         end: "bottom center",
-        scrub: 1.2, // ties progress directly to scroll — slower scroll = slower reveal
+        scrub: 1.2,
       },
     });
 
-    // Each line gets a staggered slot in the timeline — equally distributed
-    inners.forEach((inner, i) => {
+    words.forEach((word, i) => {
       tl.to(
-        inner,
-        { y: "0%", opacity: 1, ease: "power2.out", duration: 0.4 },
-        i * 0.15 // stagger offset within the timeline
+        word,
+        { opacity: 1, y: 0, ease: "power2.out", duration: 0.3 },
+        i * 0.05
       );
     });
 
     return () => {
-      split.revert();
       tl.kill();
     };
   }, []);
 
 
+  const QUOTE = `"Real estate is not just about transactions; it's about curating a legacy. We established Luxe Estates to redefine the boundaries of modern luxury living. Every property in our portfolio represents the pinnacle of architectural excellence, absolute privacy, and uncompromising elegance. Our vision is simple: to connect the extraordinary with the exceptional."`;
+
   return (
     <div
       ref={bioRef}
-      className="text-2xl md:text-3xl lg:text-4xl font-light leading-snug tracking-normal text-white/90 text-justify hyphens-auto italic"
+      className="text-2xl md:text-3xl font-light leading-relaxed tracking-normal text-white/90 text-justify hyphens-auto italic"
       style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
     >
-      &quot;Real estate is not just about transactions; it&apos;s about curating
-      a legacy. We established Luxe Estates to redefine the boundaries of modern
-      luxury living. Every property in our portfolio represents the pinnacle of
-      architectural excellence, absolute privacy, and uncompromising elegance.
-      Our vision is simple: to connect the extraordinary with the
-      exceptional.&quot;
+      {/* Animate each word independently — word positions never change between screen sizes */}
+      {QUOTE.split(" ").map((word, i) => (
+        <span key={i} className="bio-word inline-block mr-[0.25em] will-change-transform">
+          {word}
+        </span>
+      ))}
     </div>
   );
 });
@@ -120,7 +106,7 @@ export default function FounderSpotlight() {
       ref={containerRef}
       className="relative w-full bg-black py-24 md:py-32 overflow-hidden"
     >
-      <div className="w-full max-w-screen-xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         {/* Left Side: Portrait */}
         <div className="relative w-full aspect-[3/4] max-h-[70vh] overflow-hidden rounded-xl border border-white/10 flex-shrink-0">

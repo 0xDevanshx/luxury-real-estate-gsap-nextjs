@@ -34,7 +34,7 @@ export default function AppShowcase() {
 
   return (
     <section className="relative w-full bg-white text-black py-32 md:py-48 z-10">
-      <div className="max-w-screen-xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-8">
+      <div className="max-w-[1200px] mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-8">
         
         {/* Left Side: Copy & Badges */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">

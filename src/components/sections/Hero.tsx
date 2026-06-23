@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState, memo } from "react";
 import gsap from "gsap";
-import SplitType from "split-type";
 import { Circle, CircleDot, Play, Pause, ChevronDown, Compass, MapPin, Key, Shield } from "lucide-react";
 import MagneticButton from "../global/MagneticButton";
 
@@ -14,62 +13,61 @@ const HERO_BACKGROUNDS = FEATURED_LISTINGS.map(l => l.image);
 // Extracted KineticHeadline to prevent React re-renders from destroying SplitType DOM nodes
 const KineticHeadline = memo(() => {
   const headlineRef = useRef<HTMLHeadingElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!headlineRef.current) return;
-    
-    const split = new SplitType(headlineRef.current, { types: 'words' });
-    
+    if (!headlineRef.current || !wrapperRef.current) return;
+
+    // IMPORTANT: We do NOT animate font-size — that causes text reflow and CLS.
+    // Instead we use transform: scale() on a wrapper to create the shrinking effect.
+    // The text layout is baked in at a FIXED font-size — no layout shifts.
     const ctx = gsap.matchMedia(headlineRef);
     ctx.add("(prefers-reduced-motion: no-preference)", () => {
-      gsap.set(split.words, { opacity: 0, y: 60 });
-      // Word stagger reveal on load
-      gsap.to(split.words, {
+      // Entry animation — words slide up using transform only
+      const words = headlineRef.current!.querySelectorAll(".word");
+      gsap.set(words, { opacity: 0, y: 60 });
+      gsap.to(words, {
         opacity: 1,
         y: 0,
-        stagger: 0.1,
+        stagger: 0.08,
         duration: 1,
         ease: "power3.out",
-        delay: 0.2, // slight delay for smooth load
+        delay: 0.2,
       });
 
-      // Kinetic scale tween on custom properties
-      // from: clamp(10vw, 12vw, 160px)
-      // to: clamp(2rem, 3vw, 48px) -- mapping to 3vw, 3vw, 48px for simplicity of CSS interpolation
-      gsap.to(headlineRef.current, {
-        "--fs-min": 3,
-        "--fs-pref": 3,
-        "--fs-max": 48,
+      // Scroll: scale the wrapper down — NO font-size change, NO reflow
+      gsap.to(wrapperRef.current, {
+        scale: 0.35,
+        opacity: 0,
+        transformOrigin: "center center",
         ease: "none",
         scrollTrigger: {
-          trigger: headlineRef.current!.parentElement,
+          trigger: headlineRef.current!.closest("section"),
           start: "top top",
           end: "bottom top",
           scrub: 1.5,
-        }
+        },
       });
     });
 
-    return () => {
-      split.revert();
-      ctx.revert();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
-    <h1
-      ref={headlineRef}
-      className="font-bold tracking-tighter uppercase leading-none will-change-transform pb-4"
-      style={{ 
-        // Initial values match clamp(10vw, 12vw, 160px)
-        "--fs-min": 10,
-        "--fs-pref": 12,
-        "--fs-max": 160,
-        fontSize: "clamp(calc(var(--fs-min) * 1vw), calc(var(--fs-pref) * 1vw), calc(var(--fs-max) * 1px))"
-      } as React.CSSProperties}
-    >
-      Redefining Luxury Living
-    </h1>
+    <div ref={wrapperRef} className="will-change-transform">
+      <h1
+        ref={headlineRef}
+        // Fixed font size — never changes, never causes reflow
+        className="text-[clamp(4rem,10vw,10rem)] font-bold tracking-tighter uppercase leading-none pb-4 text-center"
+      >
+        {/* Manual word spans so we can animate them individually without SplitType */}
+        {["Redefining", "Luxury", "Living"].map((word, i) => (
+          <span key={i} className="word inline-block mr-[0.2em] last:mr-0">
+            {word}
+          </span>
+        ))}
+      </h1>
+    </div>
   );
 });
 KineticHeadline.displayName = "KineticHeadline";
@@ -77,12 +75,10 @@ KineticHeadline.displayName = "KineticHeadline";
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
-  const subheadRef = useRef<HTMLDivElement>(null);
-  
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  // Removed video playback logic since we are using images now
   useEffect(() => {
     const interval = setInterval(() => {
       if (isPlaying) {
@@ -92,15 +88,15 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [isPlaying]);
 
-  // Indicator bobbing
+  // Indicator bobbing — transform only, no layout impact
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    
+
     const ctx = gsap.context(() => {
       if (!prefersReducedMotion && indicatorRef.current) {
         gsap.to(indicatorRef.current, {
-          y: 15,
-          duration: 1,
+          y: 12,
+          duration: 1.2,
           yoyo: true,
           repeat: -1,
           ease: "sine.inOut"
@@ -116,11 +112,11 @@ export default function Hero() {
       className="relative w-full h-[150vh] flex flex-col justify-start overflow-hidden bg-black text-white"
     >
       <div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center px-6 lg:px-12 overflow-hidden">
-        
+
         {/* Background Images with Ken Burns Effect */}
         <div className="absolute inset-0 w-full h-full z-0 overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40">
           {HERO_BACKGROUNDS.map((bg, idx) => (
-            <div 
+            <div
               key={idx}
               className={`absolute inset-0 w-full h-full transition-opacity duration-1000 will-change-transform ${
                 idx === activeIndex ? "opacity-60 z-10" : "opacity-0 z-0"
@@ -138,13 +134,13 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* Video Controls */}
+        {/* Playback Controls */}
         <div className="absolute bottom-12 right-6 lg:right-12 z-20 flex items-center gap-4">
           <MagneticButton>
             <button
               onClick={() => setIsPlaying(!isPlaying)}
               className="text-white hover:text-white/70 transition-colors p-2"
-              aria-label={isPlaying ? "Pause background videos" : "Play background videos"}
+              aria-label={isPlaying ? "Pause" : "Play"}
               data-cursor="pointer"
             >
               {isPlaying ? <Pause size={24} /> : <Play size={24} />}
@@ -156,7 +152,7 @@ export default function Hero() {
                 <button
                   onClick={() => setActiveIndex(idx)}
                   className="text-white hover:text-white/70 transition-colors"
-                  aria-label={`Show video ${idx + 1}`}
+                  aria-label={`Show slide ${idx + 1}`}
                   data-cursor="pointer"
                 >
                   {activeIndex === idx ? <CircleDot size={16} /> : <Circle size={16} />}
@@ -166,16 +162,13 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Removed Hero3DPanel Hologram Overlay */}
+        {/* Hero Content — constrained max-width prevents layout changes on large screens */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center pointer-events-none">
 
-        {/* Hero Content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center mt-20 pointer-events-none">
-          
           <KineticHeadline />
-          
-          <div ref={subheadRef} className="mt-8 flex flex-col items-center gap-12 opacity-100 transition-opacity duration-500">
-            {/* Quick Links Row */}
-            <div className="flex flex-wrap justify-center gap-6 md:gap-12">
+
+          <div className="mt-8 flex flex-col items-center gap-12 opacity-100">
+            <div className="flex flex-wrap justify-center gap-6 md:gap-10 pointer-events-auto">
               {[
                 { icon: Compass, label: "Explore" },
                 { icon: MapPin, label: "Locations" },
@@ -183,8 +176,8 @@ export default function Hero() {
                 { icon: Shield, label: "Private" },
               ].map(({ icon: Icon, label }, i) => (
                 <MagneticButton key={i}>
-                  <button className="flex items-center gap-2 text-sm md:text-base font-medium tracking-wide uppercase hover:text-white/70 transition-colors" data-cursor="pointer">
-                    <Icon size={20} />
+                  <button className="flex items-center gap-2 text-sm font-medium tracking-wide uppercase hover:text-white/70 transition-colors" data-cursor="pointer">
+                    <Icon size={18} />
                     <span>{label}</span>
                   </button>
                 </MagneticButton>
@@ -195,9 +188,9 @@ export default function Hero() {
 
         {/* Scroll Down Indicator */}
         <div className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-70">
-          <span className="text-[10px] md:text-xs uppercase tracking-widest font-medium">Scroll to Discover</span>
+          <span className="text-[10px] uppercase tracking-widest font-medium">Scroll to Discover</span>
           <div ref={indicatorRef} className="will-change-transform">
-            <ChevronDown size={24} />
+            <ChevronDown size={22} />
           </div>
         </div>
       </div>

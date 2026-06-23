@@ -92,7 +92,7 @@ const StatItem = memo(({ item }: { item: typeof STATS_DATA[0] }) => {
 
   return (
     <div ref={containerRef} className="flex flex-col items-center justify-center text-center">
-      <div className="flex items-center text-6xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter mb-4 text-white">
+      <div className="flex items-center text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4 text-white">
         {item.prefix && <span>{item.prefix}</span>}
         <span ref={counterRef}>0</span>
         {item.suffix && <span>{item.suffix}</span>}
@@ -113,7 +113,7 @@ export default function Stats() {
       ref={sectionRef} 
       className="relative w-full py-32 md:py-48 bg-[#0a0a0a] overflow-hidden"
     >
-      <div className="max-w-screen-2xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-24 md:gap-12 relative z-10">
+      <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-24 md:gap-12 relative z-10">
         {STATS_DATA.map((item) => (
           <StatItem key={item.id} item={item} />
         ))}

@@ -75,7 +75,7 @@ export default function BeforeAfterSlider() {
 
   return (
     <section className="relative w-full bg-[#0a0a0a] text-white py-24 md:py-32 z-10">
-      <div className="max-w-screen-2xl mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-6">
         
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-light tracking-tight mb-4">Transforming Visions</h2>

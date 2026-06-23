@@ -50,12 +50,14 @@ export default function CompanyOverview() {
 
   return (
     <section ref={sectionRef} className="relative w-full py-32 md:py-48 text-white z-10">
-      <div className="max-w-screen-xl mx-auto px-6 md:px-12 flex flex-col items-center text-center">
+      {/* Max-width container prevents layout shifts on large screens */}
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col items-center text-center">
         
         <h2 className="text-sm uppercase tracking-widest text-white/50 mb-12">The Luxe Estates Mission</h2>
         
-        <div className="max-w-4xl">
-          <p className="text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed md:leading-tight tracking-tight mb-16 text-white/90">
+        {/* max-w-2xl locks line length — same wrap on 15" and 27" */}
+        <div className="max-w-2xl w-full">
+          <p className="text-xl md:text-2xl font-light leading-relaxed tracking-tight mb-16 text-white/90">
             For over two decades, we have defined the absolute standard of international luxury real estate. Our mission transcends beyond simple property acquisition; we meticulously match extraordinary individuals with exceptional properties that complement their unique legacies. We operate globally, yet deliver an intensely private and localized advisory experience.
           </p>
         </div>
@@ -83,8 +85,8 @@ export default function CompanyOverview() {
           </svg>
         </div>
 
-        <div className="max-w-3xl">
-          <p className="text-lg md:text-xl font-light leading-relaxed text-white/60">
+        <div className="max-w-xl w-full">
+          <p className="text-base md:text-lg font-light leading-relaxed text-white/60">
             By limiting our active portfolio to only the top tier of architectural achievements, we ensure that every client receives our undivided attention, absolute discretion, and the unparalleled market insight that only a specialized boutique can provide. Welcome to the pinnacle of living.
           </p>
         </div>
