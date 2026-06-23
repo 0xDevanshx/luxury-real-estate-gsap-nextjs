@@ -11,7 +11,7 @@ import Image from "next/image";
 
 const TILES = [
   { id: 1, type: "image", bgUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9" },
-  { id: 2, type: "text", content: "Global Reach", bgUrl: "https://images.unsplash.com/photo-1600607687920-4e2a09cf15b4" },
+  { id: 2, type: "text", content: "Global Reach", bgUrl: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9" },
   { id: 3, type: "image", bgUrl: "https://images.unsplash.com/photo-1613977257363-707ba9348227" },
   { id: 9, type: "image", bgUrl: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750" }, // Added to fill the CSS Grid gap before CTA
   { id: 4, type: "cta" }, // CTA tile
