@@ -30,7 +30,15 @@ export default function SmoothScrollProvider({
       smoothWheel: !prefersReducedMotion,
     });
 
+    // Force Lenis to strictly start at the top
+    lenis.scrollTo(0, { immediate: true });
+
     Object.assign(window, { lenis });
+
+    // Hack for Safari/Chrome aggressive scroll memory
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
 
     lenis.on("scroll", ScrollTrigger.update);
 
