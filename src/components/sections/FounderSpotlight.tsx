@@ -61,7 +61,8 @@ const BioText = memo(() => {
   return (
     <div
       ref={bioRef}
-      className="text-2xl md:text-3xl lg:text-4xl font-serif font-light leading-snug tracking-normal text-white/90 text-justify hyphens-auto"
+      className="text-2xl md:text-3xl lg:text-4xl font-light leading-snug tracking-normal text-white/90 text-justify hyphens-auto italic"
+      style={{ fontFamily: "var(--font-cormorant), Georgia, serif" }}
     >
       &quot;Real estate is not just about transactions; it&apos;s about curating
       a legacy. We established Luxe Estates to redefine the boundaries of modern
