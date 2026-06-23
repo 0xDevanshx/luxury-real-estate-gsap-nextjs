@@ -56,17 +56,12 @@ export default function CompanyOverview() {
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col items-center text-center">
         <h2 className="text-sm uppercase tracking-widest text-white/50 mb-12">
-          The Luxe Estates Mission
+          Our Philosophy
         </h2>
 
         <div className="max-w-2xl w-full">
           <p className="text-xl md:text-2xl font-light leading-relaxed tracking-tight mb-16 text-white/90">
-            For over two decades, we have defined the absolute standard of
-            international luxury real estate. Our mission transcends beyond
-            simple property acquisition; we meticulously match extraordinary
-            individuals with exceptional properties that complement their unique
-            legacies. We operate globally, yet deliver an intensely private and
-            localized advisory experience.
+            A home isn&apos;t just an asset—it&apos;s the canvas where your life&apos;s greatest moments will unfold. For over twenty years, we&apos;ve traveled the world not to broker transactions, but to discover those rare, breathtaking spaces that make you stop and say, <span className="italic">&quot;This is it.&quot;</span> We don&apos;t just hand you keys; we listen, we understand, and we help you find the sanctuary that perfectly mirrors your legacy.
           </p>
         </div>
 
@@ -94,11 +89,7 @@ export default function CompanyOverview() {
 
         <div className="max-w-xl w-full">
           <p className="text-base md:text-lg font-light leading-relaxed text-white/60">
-            By limiting our active portfolio to only the top tier of
-            architectural achievements, we ensure that every client receives our
-            undivided attention, absolute discretion, and the unparalleled
-            market insight that only a specialized boutique can provide. Welcome
-            to the pinnacle of living.
+            By choosing to represent only a select handful of clients and architectural masterpieces at a time, we make sure you never feel like just another listing. You get our absolute undivided attention, fierce discretion, and a deeply personal relationship that lasts long after the paperwork is signed. Welcome to real estate, done differently.
           </p>
         </div>
       </div>
