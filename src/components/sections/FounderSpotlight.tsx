@@ -26,31 +26,38 @@ const BioText = memo(() => {
       });
     }
 
-    const inners = bioRef.current.querySelectorAll(".line-inner");
+    const inners = Array.from(bioRef.current.querySelectorAll(".line-inner"));
 
-    // Set initial state
+    // Start all lines hidden
     gsap.set(inners, { y: "105%", opacity: 0 });
 
-    // Trigger: fire as soon as the bio text enters the viewport (top of bio hits 85% of viewport)
-    // NOT scrubbed — just a smooth, fast play-forward animation
-    gsap.to(inners, {
-      y: "0%",
-      opacity: 1,
-      stagger: 0.07,
-      duration: 0.9,
-      ease: "power3.out",
+    // Build a timeline where each line reveals one after the other
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: bioRef.current,
-        start: "top 85%", // fires early — as soon as text container enters view
-        toggleActions: "play none none none",
+        // Start as soon as the text block enters the bottom of the screen
+        start: "top bottom",
+        // End when the bottom of the text block reaches the center of the screen
+        end: "bottom center",
+        scrub: 1.2, // ties progress directly to scroll — slower scroll = slower reveal
       },
+    });
+
+    // Each line gets a staggered slot in the timeline — equally distributed
+    inners.forEach((inner, i) => {
+      tl.to(
+        inner,
+        { y: "0%", opacity: 1, ease: "power2.out", duration: 0.4 },
+        i * 0.15 // stagger offset within the timeline
+      );
     });
 
     return () => {
       split.revert();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      tl.kill();
     };
   }, []);
+
 
   return (
     <div
