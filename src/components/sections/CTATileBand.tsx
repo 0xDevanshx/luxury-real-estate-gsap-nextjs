@@ -11,11 +11,12 @@ import Image from "next/image";
 
 const TILES = [
   { id: 1, type: "image", bgUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9" },
-  { id: 2, type: "text", content: "Global Reach" },
+  { id: 2, type: "text", content: "Global Reach", bgUrl: "https://images.unsplash.com/photo-1600607687920-4e2a09cf15b4" },
   { id: 3, type: "image", bgUrl: "https://images.unsplash.com/photo-1613977257363-707ba9348227" },
+  { id: 9, type: "image", bgUrl: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750" }, // Added to fill the CSS Grid gap before CTA
   { id: 4, type: "cta" }, // CTA tile
   { id: 5, type: "image", bgUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c" },
-  { id: 6, type: "text", content: "Exclusive Access" },
+  { id: 6, type: "text", content: "Exclusive Access", bgUrl: "https://images.unsplash.com/photo-1600566752355-35792bedcfea" },
   { id: 7, type: "image", bgUrl: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3" },
   { id: 8, type: "image", bgUrl: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c" },
 ];
@@ -127,8 +128,9 @@ export default function CTATileBand() {
               
               {tile.type === "text" && (
                 <>
-                  <div className="w-2 h-2 rounded-full bg-white/30" />
-                  <p className="text-sm md:text-base font-light tracking-widest uppercase text-white/60">
+                  {tile.bgUrl && <ImageTile tile={tile} />}
+                  <div className="relative z-20 w-2 h-2 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+                  <p className="relative z-20 text-sm md:text-base font-bold tracking-widest uppercase text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
                     {tile.content}
                   </p>
                 </>
