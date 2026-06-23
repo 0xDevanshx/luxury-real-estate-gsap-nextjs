@@ -85,14 +85,7 @@ export default function CTATileBand() {
 
     const ctx = gsap.matchMedia(sectionRef);
     ctx.add("(prefers-reduced-motion: no-preference)", () => {
-      // Set initial state
-      gsap.set(tiles, { 
-        opacity: 0, 
-        rotateX: -90,
-        transformOrigin: "50% 50% -50px"
-      });
-
-      // Stagger animate in
+      // Stagger animate in directly from CSS initial states
       gsap.to(tiles, {
         opacity: 1,
         rotateX: 0,
@@ -117,7 +110,8 @@ export default function CTATileBand() {
           {TILES.map((tile, idx) => (
             <div 
               key={tile.id} 
-              className={`cta-tile relative aspect-square border-r border-b border-white/10 flex flex-col justify-between p-6 transition-all duration-500 hover:z-20 ${tile.type === 'cta' ? 'col-span-2 md:col-span-2 row-span-2 md:row-span-1 aspect-auto md:aspect-[2/1] bg-white/5' : ''}`}
+              // Set initial state via CSS: opacity-0 and rotateX(-89.9deg) instead of -90deg to force GPU decoding on mount
+              className={`cta-tile opacity-0 [transform:rotateX(-89.9deg)] [transform-origin:50%_50%_-50px] relative aspect-square border-r border-b border-white/10 flex flex-col justify-between p-6 transition-all duration-500 hover:z-20 ${tile.type === 'cta' ? 'col-span-2 md:col-span-2 row-span-2 md:row-span-1 aspect-auto md:aspect-[2/1] bg-white/5' : ''}`}
             >
               {tile.type === "empty" && (
                 <div className="w-full h-full opacity-20 bg-gradient-to-br from-white/5 to-transparent rounded-sm" />
