@@ -10,15 +10,15 @@ import Link from "next/link";
 import Image from "next/image";
 
 const TILES = [
-  { id: 1, type: "image", bgUrl: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9" },
-  { id: 2, type: "text", content: "Global Reach", bgUrl: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9" },
+  { id: 1, type: "image", bgUrl: "/images/img-3.jpg" },
+  { id: 2, type: "text", content: "Global Reach", bgUrl: "/images/img-4.jpg" },
   { id: 3, type: "image", bgUrl: "https://images.unsplash.com/photo-1613977257363-707ba9348227" },
-  { id: 9, type: "image", bgUrl: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750" }, // Added to fill the CSS Grid gap before CTA
+  { id: 9, type: "image", bgUrl: "/images/img-5.jpg" }, // Added to fill the CSS Grid gap before CTA
   { id: 4, type: "cta" }, // CTA tile
-  { id: 5, type: "image", bgUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c" },
-  { id: 6, type: "text", content: "Exclusive Access", bgUrl: "https://images.unsplash.com/photo-1600566752355-35792bedcfea" },
+  { id: 5, type: "image", bgUrl: "/images/img-6.jpg" },
+  { id: 6, type: "text", content: "Exclusive Access", bgUrl: "/images/img-7.jpg" },
   { id: 7, type: "image", bgUrl: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3" },
-  { id: 8, type: "image", bgUrl: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c" },
+  { id: 8, type: "image", bgUrl: "/images/img-8.jpg" },
 ];
 
 const ImageTile = ({ tile, priority = false }: { tile: { id: number; type: string; bgUrl?: string; content?: string }, priority?: boolean }) => {

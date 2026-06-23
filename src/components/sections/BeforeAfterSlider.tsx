@@ -4,7 +4,7 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const BEFORE_IMAGE = "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2000&auto=format&fit=crop"; // Unrenovated/empty space
+const BEFORE_IMAGE = "/images/img-2.jpg"; // Unrenovated/empty space
 const AFTER_IMAGE = "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop"; // Modern luxury interior
 
 export default function BeforeAfterSlider() {

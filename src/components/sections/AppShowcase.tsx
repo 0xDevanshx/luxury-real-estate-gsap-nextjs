@@ -88,7 +88,7 @@ export default function AppShowcase() {
             {/* Inner Screen */}
             <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-zinc-900 shadow-inner">
               <Image 
-                src="https://images.unsplash.com/photo-1616432043562-3671ea2e5242?q=80&w=800&auto=format&fit=crop"
+                src="/images/img-1.jpg"
                 alt="App Interface Preview"
                 fill
                 className="object-cover"

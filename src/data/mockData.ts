@@ -15,7 +15,7 @@ export const FEATURED_LISTINGS = [
     beds: 6,
     baths: 8,
     sqft: "12,400",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9",
+    image: "/images/img-3.jpg",
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ export const FEATURED_LISTINGS = [
     beds: 5,
     baths: 7,
     sqft: "10,200",
-    image: "https://images.unsplash.com/photo-1613977257363-707ba9348227",
+    image: "/images/img-14.jpg",
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ export const FEATURED_LISTINGS = [
     beds: 4,
     baths: 5,
     sqft: "8,500",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+    image: "/images/img-6.jpg",
   },
   {
     id: 4,
@@ -45,7 +45,27 @@ export const FEATURED_LISTINGS = [
     beds: 7,
     baths: 9,
     sqft: "14,000",
-    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3",
+    image: "/images/img-15.jpg",
+  },
+  {
+    id: 5,
+    title: "Oceanfront Estate",
+    location: "Miami, FL",
+    price: "$28,500,000",
+    beds: 8,
+    baths: 10,
+    sqft: "15,200",
+    image: "/images/img-5.jpg",
+  },
+  {
+    id: 6,
+    title: "Historic Chateau",
+    location: "Loire Valley, France",
+    price: "$35,000,000",
+    beds: 12,
+    baths: 14,
+    sqft: "22,000",
+    image: "/images/img-6.jpg",
   },
 ];
 
@@ -55,21 +75,21 @@ export const OFFICE_LOCATIONS = [
     address: "1 Vanderbilt Avenue, 73rd Floor",
     phone: "+1 (212) 555-0198",
     email: "ny@luxeestates.com",
-    bgUrl: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9",
+    bgUrl: "/images/img-4.jpg",
   },
   {
     city: "London",
     address: "1 Mayfair Place, Devonshire House",
     phone: "+44 20 7946 0123",
     email: "london@luxeestates.com",
-    bgUrl: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad",
+    bgUrl: "/images/img-16.jpg",
   },
   {
     city: "Dubai",
     address: "Burj Khalifa, Corporate Suite 112",
     phone: "+971 4 366 1688",
     email: "dubai@luxeestates.com",
-    bgUrl: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c",
+    bgUrl: "/images/img-8.jpg",
   },
 ];
 
@@ -80,7 +100,7 @@ export const PRESS_ITEMS = [
     title: "The New Standard of Ultra-Luxury Living in 2026",
     date: "MAR 2026",
     link: "#",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+    image: "/images/img-6.jpg",
   },
   {
     id: 2,
@@ -88,7 +108,7 @@ export const PRESS_ITEMS = [
     title: "Luxe Estates Shatters Records with $120M Malibu Sale",
     date: "FEB 2026",
     link: "#",
-    image: "https://images.unsplash.com/photo-1613977257363-707ba9348227",
+    image: "/images/img-14.jpg",
   },
   {
     id: 3,
@@ -96,7 +116,7 @@ export const PRESS_ITEMS = [
     title: "Why Billionaires Are Flocking to This Boutique Agency",
     date: "JAN 2026",
     link: "#",
-    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3",
+    image: "/images/img-15.jpg",
   },
   {
     id: 4,
@@ -104,6 +124,6 @@ export const PRESS_ITEMS = [
     title: "Inside The World's Most Exclusive Penthouses",
     date: "DEC 2025",
     link: "#",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9",
+    image: "/images/img-3.jpg",
   },
 ];
