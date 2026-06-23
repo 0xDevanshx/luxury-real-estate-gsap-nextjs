@@ -119,8 +119,14 @@ export default function Stats() {
         ))}
       </div>
       
-      {/* Subtle Background Elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[100vw] h-[50vh] bg-white/[0.02] blur-3xl rounded-full pointer-events-none" />
+      {/* Premium Architectural Grid Background */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* The fine line grid */}
+        <div className="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_10%,transparent_100%)]" />
+        
+        {/* Soft center glow to highlight the numbers */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[50vh] bg-white/[0.03] blur-[100px] rounded-full" />
+      </div>
     </section>
   );
 }
